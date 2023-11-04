@@ -8,15 +8,34 @@ import { useLayoutEffect, useRef } from "react";
 
 const HomeContent = () => {
   const introCoverRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {
     const cxt = gsap.context(() => {
       const timeline = gsap.timeline();
       timeline
-        .from("#ceeText", { yPercent: 100, opacity: 0, duration: 0.5 })
         .from("#ceeTextContainer", { borderColor: "transparent", duration: 0.5 })
+        .from("#ceeText", { yPercent: 100, opacity: 0, duration: 0.5 })
+        .from("#ceeDot", { xPercent: 100, opacity: 0, ease: "elastic.out(1,0.3)", duration: 0.5 })
         .to(".layer", { xPercent: -100, stagger: { amount: 0.2 } });
     }, introCoverRef);
+
+    return () => cxt.revert();
+  }, []);
+
+  useLayoutEffect(() => {
+    const cxt = gsap.context(() => {
+      const t1 = gsap.timeline({
+        scrollTrigger: {
+          trigger: headerRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 1,
+        },
+      });
+
+      t1.from("#headCoverImage", { scale: 1.1, yPercent: 5 });
+    }, headerRef);
 
     return () => cxt.revert();
   });
@@ -26,10 +45,13 @@ const HomeContent = () => {
       <div ref={introCoverRef}>
         <div className="fixed layer z-[600] top-0 left-0 w-full min-h-screen bg-primary-900 text-white layer-cover">
           <div className="w-full min-h-screen grid text-center place-content-center">
-            <div className="overflow-hidden py-1 border-white border-b-8" id="ceeTextContainer">
+            <div className="overflow-hidden py-1 border-white border-b-8 flex" id="ceeTextContainer">
               <p className="text-8xl font-extrabold" id="ceeText">
-                Ceelyrics<span className="text-primary-500">.</span>
+                Ceelyrics
               </p>
+              <span className="text-primary-500 text-8xl font-extrabold" id="ceeDot">
+                .
+              </span>
             </div>
           </div>
         </div>
@@ -37,12 +59,13 @@ const HomeContent = () => {
         <div className="layer layer-cover fixed top-0 left-0 w-full min-h-screen bg-primary-700 z-[540]"></div>
       </div>
 
-      <header>
+      <header ref={headerRef}>
         <div id="jumbo" className="min-h-[40rem] flex items-center relative">
           <div className="absolute top-0 left-0 w-full overflow-hidden h-full select-none">
             <Image
               src={`/images/backgrounds/home.jpg`}
               alt="home cover"
+              id="headCoverImage"
               width={1920}
               height={800}
               className="w-full h-full object-cover"
