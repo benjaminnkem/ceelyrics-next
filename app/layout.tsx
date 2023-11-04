@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { dmSans } from "@/lib/fonts";
 import Providers from "@/lib/utils/providers";
+import Navbar from "@/components/Layout/Navbar";
 
 export const metadata: Metadata = {
   title: "Ceelyrics - Next",
@@ -12,7 +13,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${dmSans.className} dark:bg-background-950 dark:text-text-50`}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Navbar />
+          <div className="h-[6rem]"></div>
+          {children}
+        </Providers>
       </body>
     </html>
   );
