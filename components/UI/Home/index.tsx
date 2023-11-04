@@ -9,6 +9,8 @@ import { useLayoutEffect, useRef } from "react";
 const HomeContent = () => {
   const introCoverRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLElement>(null);
+  const jumboRef = useRef<HTMLDivElement>(null);
+  const subscribeRef = useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {
     const cxt = gsap.context(() => {
@@ -38,8 +40,32 @@ const HomeContent = () => {
     }, headerRef);
 
     return () => cxt.revert();
-  });
+  }, []);
 
+  useLayoutEffect(() => {
+    const cxt = gsap.context(() => {
+      const t1 = gsap.timeline({ delay: 3 });
+      t1.from(".jumbo-text", { yPercent: 40, opacity: 0, stagger: { amount: 0.2 } });
+    }, jumboRef);
+
+    return () => cxt.revert();
+  }, []);
+
+  useLayoutEffect(() => {
+    const cxt = gsap.context(() => {
+      const t1 = gsap.timeline({
+        scrollTrigger: {
+          trigger: subscribeRef.current,
+          start: "top bottom",
+          end: "bottom center",
+          scrub: 1,
+        },
+      });
+      t1.from("#subImg", { yPercent: 25 });
+    }, subscribeRef);
+
+    return () => cxt.revert();
+  }, []);
   return (
     <>
       <div ref={introCoverRef}>
@@ -74,19 +100,23 @@ const HomeContent = () => {
 
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black"></div>
 
-          <div className="absolute top-0 left-0 text-white flex items-center w-full h-full">
+          <div className="absolute top-0 left-0 text-white flex items-center w-full h-full" ref={jumboRef}>
             <WidthClamp>
               <div className="grid md:grid-cols-5 gap-2 items-center h-full">
                 <div className="space-y-4 text-center md:text-start md:col-span-3 col-span-full">
-                  <h1 className={`${poppins.className} text-5xl font-extrabold leading-relaxed`}>
-                    Unlock Poetry: Discover the Music in Lyrics
-                  </h1>
-                  <p className="leading-relaxed">
-                    Step into a world of stories and emotions. <span className="font-bold">Lyrics</span> weave tales in
-                    every line, capturing the essence of songs you love. Discover, sing along, and unravel the magic of
-                    every verse. Join us to explore the powerful storytelling within each lyric.
-                  </p>
-                  <div className="mx-auto md:mx-0 w-fit">
+                  <div className="overflow-hidden">
+                    <h1 className={`${poppins.className} text-5xl font-extrabold leading-relaxed jumbo-text`}>
+                      Unlock Poetry: Discover the Music in Lyrics
+                    </h1>
+                  </div>
+                  <div className="overflow-hidden">
+                    <p className="leading-relaxed jumbo-text">
+                      Step into a world of stories and emotions. <span className="font-bold">Lyrics</span> weave tales
+                      in every line, capturing the essence of songs you love. Discover, sing along, and unravel the
+                      magic of every verse. Join us to explore the powerful storytelling within each lyric.
+                    </p>
+                  </div>
+                  <div className="mx-auto md:mx-0 w-fit jumbo-text overflow-hidden">
                     <button className="border-primary-600 border flex items-center gap-2 text-text-50 hover:bg-primary-600 px-4 py-2 rounded-xl transition-colors duration-200">
                       <span>Explore</span> <PlaneIcon size={16} />
                     </button>
@@ -181,24 +211,37 @@ const HomeContent = () => {
           </WidthClamp>
         </section>
 
-        <section className="my-[10rem]">
+        <section className="my-[10rem]" ref={subscribeRef}>
           <WidthClamp>
-            <div className="bg-primary-100 rounded-xl flex items-center justify-center py-6 px-8 min-h-[16rem]">
-              <div className="space-y-6">
-                <div>
-                  <h4 className="text-center text-2xl font-extrabold">Subscribe to our news letter ✨</h4>
-                  <p className="text-sm">We promise not to span you, and you can opt-out at anytime.</p>
-                </div>
-                <div className="bg-primary-200 p-1 rounded-full">
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="text"
-                      className="bg-transparent flex-grow outline-none p-2 w-full placeholder:text-white"
-                      placeholder="Enter your email..."
-                    />
-                    <button className="rounded-full bg-primary-600 text-primary-50 px-4 py-2 font-semibold">
-                      Subscribe
-                    </button>
+            <div className="relative bg-primary-100 rounded-xl overflow-hidden py-6 px-8 min-h-[16rem]">
+              <div className="absolute top-0 flex items-center justify-center left-0 w-full h-full">
+                <Image
+                  src={"/images/backgrounds/subscribe_bg.png"}
+                  alt="subscribe background"
+                  id="subImg"
+                  width={1400}
+                  height={600}
+                  className="w-full h-full object-cover scale-150"
+                />
+              </div>
+
+              <div className="absolute top-0 text-white flex items-center justify-center left-0 w-full h-full">
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="text-center text-2xl font-extrabold">Subscribe to our news letter ✨</h4>
+                    <p className="text-sm">We promise not to span you, and you can opt-out at anytime.</p>
+                  </div>
+                  <div className="border border-primary-200 p-1 rounded-full">
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="text"
+                        className="bg-transparent flex-grow outline-none p-2 w-full placeholder:text-white"
+                        placeholder="Enter your email..."
+                      />
+                      <button className="rounded-full bg-primary-600 text-primary-50 px-4 py-2 font-semibold">
+                        Subscribe
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

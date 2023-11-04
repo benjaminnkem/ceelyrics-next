@@ -32,27 +32,29 @@ const Navbar = () => {
 
   useLayoutEffect(() => {
     const cxt = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 1.5 });
+      const tl = gsap.timeline({ delay: 2 });
 
-      tl.fromTo(
-        "#logo",
-        { xPercent: -100, opacity: 0, color: "white" },
-        { xPercent: 0, opacity: 100, color: "black" },
-        0
-      ).fromTo(
-        ".navLink",
-        { yPercent: 20, opacity: 0, stagger: { amount: 0.2, from: "start" } },
-        { yPercent: 0, opacity: 100 }
-      );
+      tl.fromTo(".navContainer", { yPercent: -100, opacity: 0 }, { yPercent: 0, opacity: 100, ease: "bounce.out" })
+        .fromTo(
+          "#logo",
+          { xPercent: -100, opacity: 0, color: "white" },
+          { xPercent: 0, opacity: 100, color: "black" },
+          0
+        )
+        .fromTo(
+          ".navLink",
+          { xPercent: 20, opacity: 0 },
+          { xPercent: 0, opacity: 100, stagger: { amount: 0.2, from: "start" } }
+        );
 
       return () => cxt.revert();
     }, navbarRef);
-  });
+  }, []);
 
   return (
     <nav className="mt-4 top-0 left-0 fixed z-[500] w-full" ref={navbarRef}>
       <WidthClamp>
-        <div className="w-full flex items-center justify-between overflow-hidden bg-white rounded-full py-3 px-5 shadow-xl">
+        <div className="w-full flex items-center justify-between overflow-hidden bg-white rounded-full py-3 px-5 shadow-xl navContainer">
           <Link href={"/"} className={`text-xl ${poppins.className} font-extrabold`} id="logo">
             Ceelyrics
           </Link>
@@ -71,7 +73,7 @@ const Navbar = () => {
                 )}
               </li>
             ))}
-            <button className="bg-primary-600 text-text-50 hover:bg-primary-700 px-4 py-2 rounded-3xl transition-colors duration-200">
+            <button className="bg-primary-600 text-text-50 hover:bg-primary-700 px-4 py-2 rounded-3xl transition-colors duration-200 navLink">
               Get Started
             </button>
           </ul>
