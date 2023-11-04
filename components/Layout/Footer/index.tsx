@@ -28,7 +28,7 @@ const Footer = () => {
   return (
     <footer>
       <WidthClamp>
-        <div className="rounded-lg py-10 px-16 bg-background-100 m-10">
+        <div className="rounded-lg py-10 px-16 bg-background-100 mb-10 mt-4">
           <div className="space-y-6">
             <div className="mb-6">
               <Link href={"/"} className={`${poppins.className} font-extrabold text-xl`}>
@@ -41,7 +41,7 @@ const Footer = () => {
                 <div className="space-y-1 max-w-sm">
                   <p className="text-text-700">{quotes[0]} -</p>
                 </div>
-                <button className="bg-accent-800 px-4 py-2 flex items-center gap-2 text-white rounded-lg">
+                <button className="bg-background-800 px-4 py-2 flex items-center gap-2 text-white rounded-lg">
                   <span>Support Us</span> <CoffeeIcon />
                 </button>
               </div>

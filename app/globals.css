@@ -2,16 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-*::-webkit-scrollbar {
-  display: none;
-}
-
-html,
-body {
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
 @layer base {
   :root {
     --text-50: #f2f2f2;
@@ -141,6 +131,24 @@ body {
   body {
     @apply bg-background-50 text-text-950;
   }
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+::selection {
+  background: #8800cc3a;
+}
+
+::-moz-selection {
+  background: #8800cc3a;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body {
