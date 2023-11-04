@@ -19,8 +19,8 @@ const useNavbarStore = create<NavStore>((set) => ({
   links: [
     { label: "Home", path: "/" },
     { label: "About", path: "/about" },
-    { label: "Search", path: "/", icon: <SearchIcon className="text-text-500" size={16} /> },
     { label: "Contact Us", path: "/contact" },
+    { label: "Search", path: "/", icon: <SearchIcon className="text-text-500" size={16} /> },
   ],
 }));
 
@@ -28,9 +28,9 @@ const Navbar = () => {
   const { links } = useNavbarStore();
 
   return (
-    <nav className="mt-4 top-0 left-0 fixed w-full">
+    <nav className="mt-4 top-0 left-0 fixed z-[500] w-full">
       <WidthClamp>
-        <div className="w-full flex items-center justify-between bg-white rounded-full py-4 px-6 shadow-xl">
+        <div className="w-full flex items-center justify-between bg-white rounded-full py-3 px-5 shadow-xl">
           <Link href={"/"} className={`text-xl ${poppins.className} font-extrabold`}>
             Ceelyrics
           </Link>

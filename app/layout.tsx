@@ -15,7 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${dmSans.className} dark:bg-background-950 dark:text-text-50`}>
         <Providers>
           <Navbar />
-          <div className="h-[6rem]"></div>
+          {/* <div className="h-[6rem]"></div> */}
           {children}
         </Providers>
       </body>
