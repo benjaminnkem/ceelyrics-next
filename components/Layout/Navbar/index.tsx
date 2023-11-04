@@ -15,7 +15,7 @@ interface NavStore {
   links: NavLinks[];
 }
 
-const useNavbarStore = create<NavStore>((set) => ({
+export const useNavbarStore = create<NavStore>((set) => ({
   links: [
     { label: "Home", path: "/" },
     { label: "About", path: "/about" },

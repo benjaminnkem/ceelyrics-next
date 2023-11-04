@@ -1,6 +1,6 @@
 import WidthClamp from "@/components/Layout/Clamp";
 import { poppins } from "@/lib/fonts";
-import { SearchIcon } from "lucide-react";
+import { PlaneIcon, SearchIcon } from "lucide-react";
 import Image from "next/image";
 
 const Home = () => {
@@ -31,8 +31,8 @@ const Home = () => {
                   every line, capturing the essence of songs you love. Discover, sing along, and unravel the magic of
                   every verse. Join us to explore the powerful storytelling within each lyric.
                 </p>
-                <button className="bg-primary-600 flex items-center gap-1 text-text-50 hover:bg-primary-700 px-4 py-2 rounded-xl transition-colors duration-200">
-                  <span>Search for lyrics</span> <SearchIcon size={16} />
+                <button className="border-primary-600 border flex items-center gap-2 text-text-50 hover:bg-primary-600 px-4 py-2 rounded-xl transition-colors duration-200">
+                  <span>Explore</span> <PlaneIcon size={16} />
                 </button>
               </div>
               <div className="grid place-content-center">

@@ -3,6 +3,7 @@ import "./globals.css";
 import { dmSans } from "@/lib/fonts";
 import Providers from "@/lib/utils/providers";
 import Navbar from "@/components/Layout/Navbar";
+import Footer from "@/components/Layout/Footer";
 
 export const metadata: Metadata = {
   title: "Ceelyrics - Next",
@@ -17,6 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Navbar />
           {/* <div className="h-[6rem]"></div> */}
           {children}
+          <Footer />
         </Providers>
       </body>
     </html>
