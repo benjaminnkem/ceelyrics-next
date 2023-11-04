@@ -18,9 +18,9 @@ interface NavStore {
 const useNavbarStore = create<NavStore>((set) => ({
   links: [
     { label: "Home", path: "/" },
-    { label: "Contact Us", path: "/" },
-    { label: "About", path: "/" },
+    { label: "About", path: "/about" },
     { label: "Search", path: "/", icon: <SearchIcon className="text-text-500" size={16} /> },
+    { label: "Contact Us", path: "/contact" },
   ],
 }));
 
@@ -49,8 +49,8 @@ const Navbar = () => {
                 )}
               </li>
             ))}
-            <button className="bg-primary-600 text-text-50 hover:bg-primary-700 px-4 py-2 rounded-2xl transition-colors duration-200">
-              Account
+            <button className="bg-primary-600 text-text-50 hover:bg-primary-700 px-4 py-2 rounded-3xl transition-colors duration-200">
+              Get Started
             </button>
           </ul>
         </div>
