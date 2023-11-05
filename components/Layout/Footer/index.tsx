@@ -74,7 +74,21 @@ const Footer = () => {
 
             <div className="h-[0.5px] bg-background-200 rounded"></div>
 
-            <p className="text-center text-sm text-text-700">Copyright © 2023 All Rights Reserved.</p>
+            <div className="text-center text-sm text-text-700 space-y-1">
+              <p>
+                Made with 💖 by{" "}
+                <span>
+                  <Link
+                    href={"https://twitter.com/MainNkem"}
+                    target="_blank"
+                    className="border-b-2 border-primary-500 duration-200 hover:text-primary-500"
+                  >
+                    Benjamin Nkem
+                  </Link>
+                </span>
+              </p>
+              <p>Copyright © 2023 All Rights Reserved.</p>
+            </div>
           </div>
         </div>
       </WidthClamp>

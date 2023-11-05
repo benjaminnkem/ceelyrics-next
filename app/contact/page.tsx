@@ -1,5 +1,5 @@
-const ContactUs = () => {
-  return <div>Contact</div>;
-};
+import ContactContent from "@/components/UI/Contact";
+
+const ContactUs = () => <ContactContent />;
 
 export default ContactUs;

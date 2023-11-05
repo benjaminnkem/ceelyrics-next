@@ -6,6 +6,7 @@ import { poppins } from "@/lib/fonts";
 import { SearchIcon } from "lucide-react";
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { usePathname } from "next/navigation";
 
 interface NavLinks {
   label: string;
@@ -29,10 +30,11 @@ export const useNavbarStore = create<NavStore>((set) => ({
 const Navbar = () => {
   const { links } = useNavbarStore();
   const navbarRef = useRef<HTMLElement>(null);
+  const pathname = usePathname();
 
   useLayoutEffect(() => {
     const cxt = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 2 });
+      const tl = gsap.timeline({ delay: pathname === "/" ? 2 : 1 });
 
       tl.fromTo(".navContainer", { yPercent: -100, opacity: 0 }, { yPercent: 0, opacity: 100, ease: "bounce.out" })
         .fromTo(
