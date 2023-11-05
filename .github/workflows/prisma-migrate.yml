@@ -1,0 +1,27 @@
+name: Prisma Migrate Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18"
+
+      - name: Install Prisma CLI
+        run: npm install @prisma/cli --save-dev
+
+      - name: Run Prisma Migrate on Production
+        run: npx prisma migrate deploy --preview-feature
+        env:
+          DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
