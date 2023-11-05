@@ -111,7 +111,9 @@ const HomeContent = () => {
               <div className="grid md:grid-cols-5 gap-2 items-center h-full">
                 <div className="space-y-4 text-center md:text-start md:col-span-3 col-span-full">
                   <div className="overflow-hidden">
-                    <h1 className={`${poppins.className} text-5xl font-extrabold leading-relaxed jumbo-text`}>
+                    <h1
+                      className={`${poppins.className} md:text-5xl text-4xl font-extrabold leading-relaxed jumbo-text`}
+                    >
                       Unlock Poetry: Discover the Music in Lyrics
                     </h1>
                   </div>
@@ -171,13 +173,14 @@ const HomeContent = () => {
           </WidthClamp>
         </section>
 
-        <section className="my-[10rem]">
+        <section className="md:my-[10rem] my-20">
           <WidthClamp>
-            <div className="grid grid-cols-2 gap-12">
-              <div className="grid place-content-center">
-                <div className="w-auto min-h-[30rem] aspect-square bg-background-200 rounded-lg"></div>
+            <h3 className={`${poppins.className} md:text-4xl text-3xl text-center font-bold mb-10`}>Trending Album</h3>
+            <div className="grid md:grid-cols-2 lg:gap-12 md:gap-10 gap-8">
+              <div className="flex items-center justify-center w-full min-h-[16rem] md:h-auto">
+                <div className="md:w-auto lg:min-h-[30rem] md:min-h-[25rem] w-full min-h-[16rem] md:aspect-square bg-background-200 rounded-lg"></div>
               </div>
-              <div className="space-y-6">
+              <div className="space-y-6 text-center md:text-start">
                 <div>
                   <p className="text-text-700">Artist</p>
                   <h4 className={`${poppins.className} text-3xl font-bold`}>Taylor Swift</h4>
@@ -191,7 +194,7 @@ const HomeContent = () => {
                   <h4 className={`${poppins.className} text-xl font-semibold`}>10th June, 2022</h4>
                 </div>
 
-                <button className="flex items-center border-accent-400 gap-1 border-b-2 duration-100 hover:border-b-4 py-1">
+                <button className="flex items-center border-accent-400 gap-1 border-b-2 mx-auto md:mx-0 duration-100 hover:border-b-4 py-1">
                   <span>View Album</span> <EyeIcon size={18} />
                 </button>
               </div>
@@ -199,9 +202,9 @@ const HomeContent = () => {
           </WidthClamp>
         </section>
 
-        <section className="my-[10rem]">
+        <section className="md:my-[10rem] my-20">
           <WidthClamp>
-            <h3 className={`${poppins.className} text-4xl font-bold mb-10`}>Popular Genres</h3>
+            <h3 className={`${poppins.className} md:text-4xl text-3xl text-center font-bold mb-10`}>Popular Genres</h3>
             <div className="space-y-16">
               <div className="flex items-center gap-7 overflow-x-auto">
                 {Array.from({ length: 8 }).map((_, idx) => (
@@ -217,7 +220,7 @@ const HomeContent = () => {
           </WidthClamp>
         </section>
 
-        <section className="my-[10rem]" ref={subscribeRef}>
+        <section className="md:my-[10rem] my-20" ref={subscribeRef}>
           <WidthClamp>
             <div className="relative bg-primary-100 rounded-xl overflow-hidden py-6 px-8 min-h-[16rem]">
               <div className="absolute top-0 flex items-center justify-center left-0 w-full h-full">
