@@ -52,7 +52,7 @@ const AboutContent = () => {
 
         <section className="mb-40">
           <WidthClamp>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <h3 className="font-extrabold text-5xl">Our Story</h3>
               </div>

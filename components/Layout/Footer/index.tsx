@@ -29,46 +29,50 @@ const Footer = () => {
     <footer>
       <WidthClamp>
         <div className="rounded-lg py-10 px-16 bg-background-100 mb-10 mt-4">
-          <div className="space-y-6">
-            <div className="mb-6">
+          <div className="md:space-y-6 space-y-4">
+            <div className="md:mb-6 mb-4">
               <Link href={"/"} className={`${poppins.className} font-extrabold text-xl`}>
                 Ceelyrics
               </Link>
             </div>
 
-            <div className="flex gap-[10rem]">
-              <div className="space-y-4">
+            <div className="flex sm:flex-row flex-col lg:gap-[10rem] md:gap-20 gap-10">
+              <div className="space-y-4 max-w-sm">
                 <div className="space-y-1 max-w-sm">
-                  <p className="text-text-700">{quotes[0]} -</p>
+                  <p className="text-text-700">{quotes[1]} -</p>
                 </div>
                 <button className="bg-background-800 px-4 py-2 flex items-center gap-2 text-white rounded-lg">
                   <span>Support Us</span> <CoffeeIcon />
                 </button>
               </div>
-              <div className="space-y-2">
-                <p className="uppercase text-text-600">Explore</p>
-                <ul className="flex flex-col gap-1">
-                  {links.map((link, idx) => (
-                    <li key={idx}>
-                      <Link href={link.path} className="duration-200 hover:text-text-700">
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="space-y-2">
-                <p className="uppercase text-text-600">Contact Us</p>
-                <ul className="flex flex-col gap-1">
-                  {socialLinks.map((link, idx) => (
-                    <li key={idx}>
-                      <Link href={link.path} title={link.label} className="duration-200 flex items-center gap-2">
-                        <span>{link.icon}</span>
-                        <span>{link.label}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+
+              <div className="flex lg:gap-[10rem] gap-20">
+                <div className="space-y-2">
+                  <p className="uppercase text-text-600">Explore</p>
+                  <ul className="flex flex-col gap-1">
+                    {links.map((link, idx) => (
+                      <li key={idx}>
+                        <Link href={link.path} className="duration-200 hover:text-text-700">
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="space-y-2">
+                  <p className="uppercase text-text-600">Contact Us</p>
+                  <ul className="flex flex-col gap-1">
+                    {socialLinks.map((link, idx) => (
+                      <li key={idx}>
+                        <Link href={link.path} title={link.label} className="duration-200 flex items-center gap-2">
+                          <span>{link.icon}</span>
+                          <span>{link.label}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
 

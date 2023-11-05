@@ -44,7 +44,7 @@ const ContactContent = () => {
           </div>
           <div className="-z-[8] absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black to-transparent flex items-center">
             <WidthClamp>
-              <div className="text-white space-y-3">
+              <div className="text-white space-y-3 text-center sm:text-start">
                 <h1 className="text-6xl font-extrabold">CONTACT US</h1>
                 <p className="text-text-200 text-lg">Have any issues, or decided to reach out to us?</p>
               </div>
@@ -54,7 +54,7 @@ const ContactContent = () => {
       </header>
       <main>
         <WidthClamp>
-          <div className="grid grid-cols-2 gap-16 my-10">
+          <div className="grid md:grid-cols-2 lg:gap-16 md:gap-6 gap-6 my-10">
             <div>
               <h2 className="font-bold text-3xl">Send Us A Message</h2>
               <div className="bg-white rounded-md py-10 px-8 border mt-4">
@@ -117,7 +117,7 @@ const ContactContent = () => {
             </div>
             <div>
               <h3 className="font-bold text-3xl">Our Contact Info</h3>
-              <div className="grid grid-cols-2 gap-2 mt-4">
+              <div className="grid lg:grid-cols-2 gap-2 mt-4">
                 <div className="bg-white border rounded-md p-4 shadow-md">
                   <div className="flex gap-2">
                     <MailIcon size={18} className="mt-2" />

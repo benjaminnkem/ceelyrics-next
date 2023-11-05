@@ -56,7 +56,7 @@ const FAQComponent: React.FC = () => {
     <WidthClamp>
       <div className="space-y-6 mb-40">
         <h4 className="font-extrabold text-5xl">FAQ</h4>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid sm:grid-cols-2 gap-4 select-none">
           {faqs.map((faq, index) => (
             <div key={index} className="bg-white shadow-xl self-start duration-200 rounded-lg p-3">
               <div
