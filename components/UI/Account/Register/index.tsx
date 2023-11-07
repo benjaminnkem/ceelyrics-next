@@ -3,7 +3,8 @@
 import { PlaneIcon } from "lucide-react";
 import "remixicon/fonts/remixicon.css";
 import classNames from "classnames";
-import Image from "next/image";
+import Link from "next/link";
+import RightToLeftIntro from "@/components/Common/Intros/right-to-left";
 
 const signUpBtnClass = classNames([
   "w-full bg-primary-600 py-2 rounded-lg flex items-center gap-3 justify-center",
@@ -14,6 +15,7 @@ const RegisterForm = () => {
   return (
     <>
       <div className="bg-white overflow-x-hidden overflow-y-auto">
+        <RightToLeftIntro />
         <div className="md:my-[1rem] md:min-w-[16rem] w-11/12 p-5 rounded-lg mx-auto bg-white relative">
           <div>
             <h1 className="font-bold text-4xl mb-4">Create An Account</h1>
@@ -85,7 +87,10 @@ const RegisterForm = () => {
                     Create Account <PlaneIcon />
                   </button>
                   <p className="text-sm text-text-600">
-                    Have an account? <span className="border-b border-primary-700 font-semibold">Login</span>
+                    Have an account?{" "}
+                    <Link href={"/account/login"}>
+                      <span className="border-b border-primary-700 font-semibold">Login</span>
+                    </Link>
                   </p>
                 </div>
               </div>

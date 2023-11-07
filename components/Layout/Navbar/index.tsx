@@ -3,7 +3,7 @@ import Link from "next/link";
 import { create } from "zustand";
 import WidthClamp from "../Clamp";
 import { poppins } from "@/lib/fonts";
-import { HomeIcon, MenuIcon, SearchIcon, XIcon } from "lucide-react";
+import { HomeIcon, MenuIcon, SearchIcon, User2Icon, XIcon } from "lucide-react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { usePathname } from "next/navigation";
@@ -23,7 +23,16 @@ export const useNavbarStore = create<NavStore>((set) => ({
     { label: "Home", path: "/" },
     { label: "About", path: "/about" },
     { label: "Contact Us", path: "/contact" },
-    { label: "Search", path: "/", icon: <SearchIcon className="text-text-500" size={16} /> },
+    { label: "", path: "/", icon: <SearchIcon className="text-text-600" size={16} /> },
+    {
+      label: "",
+      path: "/account/login",
+      icon: (
+        <div className="p-1 border-text-500 flex items-center justify-center border rounded-full">
+          <User2Icon className="text-text-600" size={16} />
+        </div>
+      ),
+    },
   ],
 }));
 
@@ -43,11 +52,7 @@ const Navbar = () => {
           { xPercent: 0, opacity: 100, color: "black" },
           0
         )
-        .fromTo(
-          ".navLink",
-          { xPercent: 20, opacity: 0 },
-          { xPercent: 0, opacity: 100, stagger: { amount: 0.2, from: "start" } }
-        );
+        .fromTo(".navLink", { xPercent: 20, opacity: 0 }, { xPercent: 0, opacity: 100, stagger: { each: 0.1 } });
 
       return () => cxt.revert();
     }, navbarRef);
@@ -93,11 +98,11 @@ const Navbar = () => {
                   )}
                 </li>
               ))}
-              <Link href={"/account/register"}>
+              {/* <Link href={"/account/register"}>
                 <button className="bg-primary-600 text-text-50 hover:bg-primary-700 px-4 py-2 rounded-3xl transition-colors duration-200 navLink">
-                  Get Started
+                  Account
                 </button>
-              </Link>
+              </Link> */}
             </ul>
 
             <div className="flex items-center gap-6 sm:hidden mr-4">
@@ -135,7 +140,7 @@ const Navbar = () => {
           ))}
           <Link href={"/account/register"}>
             <button className="text-xl text-text-50 hover:border-primary-700 px-4 py-2 rounded-3xl border border-transparent font-semibold transition-colors duration-200">
-              Get Started
+              Account
             </button>
           </Link>
         </div>
