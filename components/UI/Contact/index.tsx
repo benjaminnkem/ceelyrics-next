@@ -66,7 +66,7 @@ const ContactContent = () => {
                         <input
                           type="text"
                           className="w-full outline-none block border border-text-200 rounded-md p-2"
-                          placeholder="Enter your first name..."
+                          placeholder="Enter your name..."
                           required
                         />
                       </div>

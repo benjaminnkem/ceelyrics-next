@@ -64,6 +64,12 @@ const Navbar = () => {
     }
   }, [mobileNavOpen]);
 
+  const noshowRoutes = ["/account/register/", "/account/login/"];
+
+  for (const route of noshowRoutes) {
+    if (pathname === route) return null;
+  }
+
   return (
     <>
       <nav className="mt-4 top-0 left-0 fixed z-[500] w-full" ref={navbarRef}>
@@ -87,9 +93,11 @@ const Navbar = () => {
                   )}
                 </li>
               ))}
-              <button className="bg-primary-600 text-text-50 hover:bg-primary-700 px-4 py-2 rounded-3xl transition-colors duration-200 navLink">
-                Get Started
-              </button>
+              <Link href={"/account/register"}>
+                <button className="bg-primary-600 text-text-50 hover:bg-primary-700 px-4 py-2 rounded-3xl transition-colors duration-200 navLink">
+                  Get Started
+                </button>
+              </Link>
             </ul>
 
             <div className="flex items-center gap-6 sm:hidden mr-4">
@@ -125,9 +133,11 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
-          <button className="text-xl text-text-50 hover:border-primary-700 px-4 py-2 rounded-3xl border border-transparent font-semibold transition-colors duration-200">
-            Get Started
-          </button>
+          <Link href={"/account/register"}>
+            <button className="text-xl text-text-50 hover:border-primary-700 px-4 py-2 rounded-3xl border border-transparent font-semibold transition-colors duration-200">
+              Get Started
+            </button>
+          </Link>
         </div>
       </aside>
     </>

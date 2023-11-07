@@ -4,6 +4,7 @@ import WidthClamp from "../Clamp";
 import { CoffeeIcon, TwitterIcon, YoutubeIcon } from "lucide-react";
 import { poppins } from "@/lib/fonts";
 import { useNavbarStore } from "../Navbar";
+import { usePathname } from "next/navigation";
 
 const Footer = () => {
   const { links } = useNavbarStore();
@@ -24,6 +25,13 @@ const Footer = () => {
     "Lyrically Yours: Discover Music's Poetry",
     "Where Music Speaks: Lyrics Tell the Tale",
   ];
+
+  const pathname = usePathname();
+  const noshowRoutes = ["/account/register/", "/account/login/"];
+
+  for (const route of noshowRoutes) {
+    if (pathname === route) return null;
+  }
 
   return (
     <footer>

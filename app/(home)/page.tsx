@@ -4,7 +4,7 @@ import axios from "axios";
 
 const getInitialData = async () => {
   const { host, protocol } = getHostNProtocol();
-  const response = await axios.get(`${protocol}${host}/api/v1/initial-data`);
+  const response = await axios.get(`${protocol}${host}/api/v1/auth/test`);
   const { data } = response;
 
   return data;
@@ -12,8 +12,6 @@ const getInitialData = async () => {
 
 const Home = async () => {
   const init = await getInitialData();
-  console.log("init data", init);
-
   return <HomeContent />;
 };
 
