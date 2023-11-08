@@ -7,23 +7,25 @@ import { HomeIcon, MenuIcon, SearchIcon, User2Icon, XIcon } from "lucide-react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { usePathname } from "next/navigation";
+import Modal from "@/components/Common/Modals/search-modal";
 
-interface NavLinks {
+interface NavLink {
   label: string;
   path: string;
   icon?: JSX.Element;
+  notLink?: boolean;
 }
 
 interface NavStore {
-  links: NavLinks[];
+  links: NavLink[];
 }
 
-export const useNavbarStore = create<NavStore>((set) => ({
+export const useNavbarStore = create<NavStore>(() => ({
   links: [
     { label: "Home", path: "/" },
     { label: "About", path: "/about" },
     { label: "Contact Us", path: "/contact" },
-    { label: "", path: "/", icon: <SearchIcon className="text-text-600" size={16} /> },
+    { label: "", path: "/search", icon: <SearchIcon className="text-text-600" size={16} /> },
     {
       label: "",
       path: "/account/login",
@@ -40,18 +42,14 @@ const Navbar = () => {
   const { links } = useNavbarStore();
   const navbarRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
+  const [openModal, setOpenModal] = useState(false);
 
   useLayoutEffect(() => {
     const cxt = gsap.context(() => {
       const tl = gsap.timeline({ delay: pathname === "/" ? 2 : 1 });
 
       tl.fromTo(".navContainer", { yPercent: -100, opacity: 0 }, { yPercent: 0, opacity: 100, ease: "bounce.out" })
-        .fromTo(
-          "#logo",
-          { xPercent: -100, opacity: 0, color: "white" },
-          { xPercent: 0, opacity: 100, color: "black" },
-          0
-        )
+        .fromTo("#logo", { xPercent: -100, opacity: 0 }, { xPercent: 0, opacity: 100 }, 0)
         .fromTo(".navLink", { xPercent: 20, opacity: 0 }, { xPercent: 0, opacity: 100, stagger: { each: 0.1 } });
 
       return () => cxt.revert();
@@ -75,34 +73,46 @@ const Navbar = () => {
     if (pathname === route) return null;
   }
 
+  const renderLink = (link: NavLink) => {
+    if (link.notLink) {
+      return (
+        <div className="flex gap-1 duration-200 hover:animate-pulse items-center cursor-pointer">
+          <span>{link.label}</span> {link.icon && link.icon}
+        </div>
+      );
+    } else {
+      return (
+        <Link href={link.path} className="duration-200 hover:animate-pulse">
+          {link.label} {link.icon && link.icon}
+        </Link>
+      );
+    }
+  };
+
   return (
     <>
+      <Modal isOpen={openModal} onClose={() => setOpenModal(false)}>
+        <h2>Modal Content</h2>
+        <p>This is an example of a custom reusable modal in Next.js.</p>
+      </Modal>
+
       <nav className="mt-4 top-0 left-0 fixed z-[500] w-full" ref={navbarRef}>
         <WidthClamp>
-          <div className="w-full flex items-center justify-between overflow-hidden bg-white rounded-full py-3 px-5 shadow-xl navContainer">
-            <Link href={"/"} className={`text-xl ${poppins.className} font-extrabold`} id="logo">
+          <div className="w-full flex items-center justify-between overflow-hidden bg-white dark:bg-background-800 rounded-full py-3 px-5 shadow-xl navContainer">
+            <Link
+              href={"/"}
+              className={`text-xl ${poppins.className} text-black dark:text-white font-extrabold`}
+              id="logo"
+            >
               Ceelyrics
             </Link>
 
             <ul className="items-center gap-4 sm:flex hidden select-none">
               {links.map((link, idx) => (
                 <li key={idx} className="navLink">
-                  {link.icon ? (
-                    <Link href={link.path} className="flex gap-1 duration-200 hover:animate-pulse items-center">
-                      <span>{link.label}</span> {link.icon}
-                    </Link>
-                  ) : (
-                    <Link href={link.path} className="duration-200 hover:animate-pulse">
-                      {link.label}
-                    </Link>
-                  )}
+                  {renderLink(link)}
                 </li>
               ))}
-              {/* <Link href={"/account/register"}>
-                <button className="bg-primary-600 text-text-50 hover:bg-primary-700 px-4 py-2 rounded-3xl transition-colors duration-200 navLink">
-                  Account
-                </button>
-              </Link> */}
             </ul>
 
             <div className="flex items-center gap-6 sm:hidden mr-4">

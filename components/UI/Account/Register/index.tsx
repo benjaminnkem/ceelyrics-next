@@ -14,13 +14,13 @@ const signUpBtnClass = classNames([
 const RegisterForm = () => {
   return (
     <>
-      <div className="bg-white overflow-x-hidden overflow-y-auto">
+      <div className="bg-white dark:bg-background-950 overflow-x-hidden overflow-y-auto">
         <RightToLeftIntro />
-        <div className="md:my-[1rem] md:min-w-[16rem] w-11/12 p-5 rounded-lg mx-auto bg-white relative">
+        <div className="md:my-[1rem] md:min-w-[16rem] w-11/12 p-5 rounded-lg mx-auto bg-white dark:bg-background-900 relative">
           <div>
             <h1 className="font-bold text-4xl mb-4">Create An Account</h1>
             <form onSubmit={(e) => e.preventDefault()}>
-              <div className="space-y-4">
+              <div className="space-y-6">
                 <div className="md:grid grid-cols-2 gap-2">
                   <div className="space-y-1">
                     <label htmlFor="firstName" className="font-semibold">
@@ -30,7 +30,7 @@ const RegisterForm = () => {
                       type="text"
                       id="firstName"
                       placeholder="Enter first name"
-                      className="outline-none block w-full p-2 border-b-2 rounded"
+                      className="outline-none block dark:bg-background-800 w-full p-2 border-b-2 rounded"
                     />
                   </div>
                   <div className="space-y-1">
@@ -41,16 +41,10 @@ const RegisterForm = () => {
                       type="text"
                       id="lastName"
                       placeholder="Enter last name"
-                      className="outline-none block w-full p-2 border-b-2 rounded"
+                      className="outline-none block dark:bg-background-800 w-full p-2 border-b-2 rounded"
                     />
                   </div>
                 </div>
-                {/* <div className="space-y-1">
-                  <label htmlFor="username" className="font-semibold">
-                    Username
-                  </label>
-                  <input type="text" id="username" placeholder="choose a username" className="outline-none block w-full p-2 border-b-2 rounded" />
-                </div> */}
                 <div className="space-y-1">
                   <label htmlFor="email" className="font-semibold">
                     Email
@@ -59,7 +53,7 @@ const RegisterForm = () => {
                     type="text"
                     id="email"
                     placeholder="Enter email address"
-                    className="outline-none block w-full p-2 border-b-2 rounded"
+                    className="outline-none block dark:bg-background-800 w-full p-2 border-b-2 rounded"
                   />
                 </div>
                 <div className="space-y-1">
@@ -70,12 +64,12 @@ const RegisterForm = () => {
                     type="password"
                     id="password"
                     placeholder="**********"
-                    className="outline-none block w-full p-2 border-b-2 rounded"
+                    className="outline-none block dark:bg-background-800 w-full p-2 border-b-2 rounded"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="terms" className="text-sm text-text-500">
+                  <label htmlFor="terms" className="text-sm text-text-500 dark:text-text-100">
                     <input type="checkbox" name="terms" /> I agree to accept ceelyrics&apos;{" "}
                     <span className="text-primary-500 cursor-pointer">Terms</span> and{" "}
                     <span className="text-primary-500 cursor-pointer">Conditions</span>.
@@ -86,7 +80,7 @@ const RegisterForm = () => {
                   <button className={signUpBtnClass}>
                     Create Account <PlaneIcon />
                   </button>
-                  <p className="text-sm text-text-600">
+                  <p className="text-sm text-text-600 dark:text-text-300">
                     Have an account?{" "}
                     <Link href={"/account/login"}>
                       <span className="border-b border-primary-700 font-semibold">Login</span>

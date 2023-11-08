@@ -13,9 +13,9 @@ const signUpBtnClass = classNames([
 const LoginForm = () => {
   return (
     <>
-      <div className="bg-white overflow-x-hidden overflow-y-auto h-screen flex items-center justify-center">
+      <div className="bg-white dark:bg-background-900 overflow-x-hidden overflow-y-auto h-screen flex items-center justify-center">
         <RightToLeftIntro />
-        <div className="md:my-[1rem] md:min-w-[16rem] w-11/12 p-5 rounded-lg mx-auto bg-white relative">
+        <div className="md:my-[1rem] md:min-w-[16rem] w-11/12 p-5 rounded-lg mx-auto bg-white dark:bg-background-900 relative">
           <div>
             <h1 className="font-bold text-4xl mb-4">Login</h1>
             <form onSubmit={(e) => e.preventDefault()}>
@@ -28,7 +28,7 @@ const LoginForm = () => {
                     type="text"
                     id="email"
                     placeholder="Enter email address"
-                    className="outline-none block w-full p-2 border-b-2 rounded"
+                    className="outline-none block dark:bg-background-800 w-full p-2 border-b-2 rounded"
                   />
                 </div>
                 <div className="space-y-1">
@@ -39,13 +39,13 @@ const LoginForm = () => {
                     type="password"
                     id="password"
                     placeholder="**********"
-                    className="outline-none block w-full p-2 border-b-2 rounded"
+                    className="outline-none block dark:bg-background-800 w-full p-2 border-b-2 rounded"
                   />
                 </div>
 
                 <div className="space-y-1">
                   <button className={signUpBtnClass}>Login</button>
-                  <p className="text-sm text-text-600">
+                  <p className="text-sm text-text-600 dark:text-text-100">
                     Don&apos;t have an account?{" "}
                     <Link href={"/account/register"}>
                       <span className="border-b border-primary-700 font-semibold">Create an account</span>

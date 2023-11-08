@@ -36,7 +36,7 @@ const Footer = () => {
   return (
     <footer>
       <WidthClamp>
-        <div className="rounded-lg py-10 px-16 bg-background-100 mb-10 mt-4">
+        <div className="rounded-lg py-10 px-16 bg-background-100 dark:bg-background-900 dark:text-text-50 mb-10 mt-4">
           <div className="md:space-y-6 space-y-4">
             <div className="md:mb-6 mb-4">
               <Link href={"/"} className={`${poppins.className} font-extrabold text-xl`}>
@@ -47,7 +47,7 @@ const Footer = () => {
             <div className="flex sm:flex-row flex-col lg:gap-[10rem] md:gap-20 gap-10">
               <div className="space-y-4 max-w-sm">
                 <div className="space-y-1 max-w-sm">
-                  <p className="text-text-700">{quotes[1]} -</p>
+                  <p className="text-text-700 dark:text-text-400">{quotes[1]} -</p>
                 </div>
                 <button className="bg-background-800 px-4 py-2 flex items-center gap-2 text-white rounded-lg">
                   <span>Support Us</span> <CoffeeIcon />
@@ -86,7 +86,7 @@ const Footer = () => {
 
             <div className="h-[0.5px] bg-background-200 rounded"></div>
 
-            <div className="text-center text-sm text-text-700 space-y-1">
+            <div className="text-center text-sm text-text-700 dark:text-text-400 space-y-1">
               <p>
                 Made with 💖 by{" "}
                 <span>

@@ -14,7 +14,7 @@ const AboutContent = () => {
             <div className="grid md:grid-cols-5 gap-2 items-center h-full">
               <div className="md:col-span-3 space-y-4 col-span-full">
                 <h1 className="text-6xl font-extrabold">Who We Are</h1>
-                <p className="text-text-700 leading-loose">
+                <p className="text-text-700 dark:text-text-400 leading-loose">
                   Our passion lies in curating an environment where lyrics transcend mere words, resonating with the
                   soul of every listener. We&apos;ve meticulously crafted an interface designed for easy navigation,
                   ensuring an enriching experience for music enthusiasts, whether discovering the narrative of a
@@ -30,7 +30,7 @@ const AboutContent = () => {
           <WidthClamp>
             <div className="space-y-4 max-w-xl ml-auto">
               <h2 className="text-6xl font-extrabold">Our Commitment</h2>
-              <p className="text-text-700 leading-loose">
+              <p className="text-text-700 dark:text-text-400 leading-loose">
                 We are committed to enriching your music exploration, transforming the search for lyrics into an
                 effortless and enjoyable experience. From chart-topping hits to hidden gems, our website stands as a
                 haven for those seeking to immerse themselves in the depth and beauty of song lyrics.
@@ -41,7 +41,7 @@ const AboutContent = () => {
           <WidthClamp>
             <div className="space-y-4 max-w-xl mb-40">
               <h3 className="text-6xl font-extrabold">Join Us</h3>
-              <p className="text-text-700 leading-loose">
+              <p className="text-text-700 dark:text-text-400 leading-loose">
                 We&apos;ll be your guide to the magical world of lyrics, where words and music come together to create
                 unforgettable experiences. Come explore with us and discover the stories behind the songs that make them
                 truly special.

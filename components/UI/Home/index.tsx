@@ -153,7 +153,10 @@ const HomeContent = () => {
               <div className="space-y-16">
                 <div className="flex items-center gap-7 overflow-x-auto">
                   {Array.from({ length: 4 }).map((_, idx) => (
-                    <div key={idx} className="w-80 h-80 p-2 bg-background-100 flex-shrink-0 rounded-lg relative">
+                    <div
+                      key={idx}
+                      className="w-80 h-80 p-2 bg-background-100 dark:bg-background-900 flex-shrink-0 rounded-lg relative"
+                    >
                       <div className="absolute left-0 bottom-0 h-1/2 w-full p-4 space-y-2">
                         <p className={`font-bold text-3xl ${poppins.className}`}>Red Sky</p>
                         <p className="text-sm font-light">Taylor Swift</p>
@@ -178,7 +181,7 @@ const HomeContent = () => {
             <h3 className={`${poppins.className} md:text-4xl text-3xl text-center font-bold mb-10`}>Trending Album</h3>
             <div className="grid md:grid-cols-2 lg:gap-12 md:gap-10 gap-8">
               <div className="flex items-center justify-center w-full min-h-[16rem] md:h-auto">
-                <div className="md:w-auto lg:min-h-[30rem] md:min-h-[25rem] w-full min-h-[16rem] md:aspect-square bg-background-200 rounded-lg"></div>
+                <div className="md:w-auto lg:min-h-[30rem] md:min-h-[25rem] w-full min-h-[16rem] md:aspect-square bg-background-200 dark:bg-background-800 rounded-lg"></div>
               </div>
               <div className="space-y-6 text-center md:text-start">
                 <div>
@@ -210,7 +213,7 @@ const HomeContent = () => {
                 {Array.from({ length: 8 }).map((_, idx) => (
                   <div
                     key={idx}
-                    className="w-40 h-40 p-2 bg-background-100 flex-shrink-0 rounded-lg flex items-center justify-center"
+                    className="w-40 h-40 p-2 bg-background-100 dark:bg-background-900 flex-shrink-0 rounded-lg flex items-center justify-center"
                   >
                     <p className="font-bold">Genre</p>
                   </div>

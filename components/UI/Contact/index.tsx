@@ -57,7 +57,7 @@ const ContactContent = () => {
           <div className="grid md:grid-cols-2 lg:gap-16 md:gap-6 gap-6 my-10">
             <div>
               <h2 className="font-bold text-3xl">Send Us A Message</h2>
-              <div className="bg-white rounded-md py-10 px-8 border mt-4">
+              <div className="bg-white dark:bg-background-900 rounded-md py-10 px-8 border dark:border-background-700 mt-4">
                 <form onSubmit={(e) => e.preventDefault()}>
                   <div className="space-y-4">
                     <div className="space-y-1">
@@ -65,7 +65,7 @@ const ContactContent = () => {
                       <div>
                         <input
                           type="text"
-                          className="w-full outline-none block border border-text-200 rounded-md p-2"
+                          className="w-full outline-none dark:bg-background-800 block border dark:border-background-700 border-text-200 rounded-md p-2"
                           placeholder="Enter your name..."
                           required
                         />
@@ -76,7 +76,7 @@ const ContactContent = () => {
                       <div>
                         <input
                           type="email"
-                          className="w-full outline-none block border border-text-200 rounded-md p-2"
+                          className="w-full outline-none dark:bg-background-800 block border dark:border-background-700 border-text-200 rounded-md p-2"
                           placeholder="Enter your email address..."
                           required
                         />
@@ -85,7 +85,10 @@ const ContactContent = () => {
                     <div className="space-y-1">
                       <label htmlFor="reason">Reason for contact</label>
                       <div>
-                        <select id="reason" className="w-full outline-none block border border-text-200 rounded-md p-2">
+                        <select
+                          id="reason"
+                          className="w-full outline-none dark:bg-background-800 block border dark:border-background-700 border-text-200 rounded-md p-2"
+                        >
                           <option value="" disabled>
                             Select an option
                           </option>
@@ -100,14 +103,14 @@ const ContactContent = () => {
                       <label htmlFor="fullName">Message</label>
                       <div>
                         <textarea
-                          className="w-full outline-none block border border-text-200 rounded-md p-2 resize-none"
+                          className="w-full outline-none dark:bg-background-800 block border dark:border-background-700 border-text-200 rounded-md p-2 resize-none"
                           placeholder="Type message here..."
                           rows={10}
                           required
                         ></textarea>
                       </div>
                     </div>
-                    <button className="w-full outline-none rounded-md flex items-center justify-center group hover:bg-primary-600 transition-colors duration-200 gap-2 py-2 bg-primary-700 text-text-100">
+                    <button className="w-full outline-none dark:bg-background-800 rounded-md flex items-center justify-center group hover:bg-primary-600 transition-colors duration-200 gap-2 py-2 bg-primary-700 text-text-100">
                       <span className="font-semibold">Send</span>{" "}
                       <PlaneTakeoff className="transition-transform duration-200 group-hover:translate-x-[2px] group-hover:-translate-y-[2px]" />
                     </button>
@@ -118,31 +121,31 @@ const ContactContent = () => {
             <div>
               <h3 className="font-bold text-3xl">Our Contact Info</h3>
               <div className="grid lg:grid-cols-2 gap-2 mt-4">
-                <div className="bg-white border rounded-md p-4 shadow-md">
+                <div className="bg-white dark:bg-background-900 border dark:border-background-700 rounded-md p-4 shadow-md">
                   <div className="flex gap-2">
                     <MailIcon size={18} className="mt-2" />
                     <div>
                       <h4 className="font-semibold text-lg">Email</h4>
-                      <p className="text-text-700">contact@ceelyrics.com</p>
+                      <p className="text-text-700 dark:text-text-200">contact@ceelyrics.com</p>
                     </div>
                   </div>
                 </div>
-                <div className="bg-white border rounded-md p-4 shadow-md">
+                <div className="bg-white dark:bg-background-900 border dark:border-background-700 rounded-md p-4 shadow-md">
                   <div className="flex gap-2">
                     <PhoneIcon size={18} className="mt-2" />
                     <div>
                       <h4 className="font-semibold text-lg">Phone No.</h4>
-                      <p className="text-text-700">+234 (81) 3396 1439</p>
-                      <p className="text-text-700">+234 (70) 4643 8980</p>
+                      <p className="text-text-700 dark:text-text-200">+234 (81) 3396 1439</p>
+                      <p className="text-text-700 dark:text-text-200">+234 (70) 4643 8980</p>
                     </div>
                   </div>
                 </div>
-                <div className="bg-white border rounded-md p-4 shadow-md">
+                <div className="bg-white dark:bg-background-900 border dark:border-background-700 rounded-md p-4 shadow-md">
                   <div className="flex gap-2">
                     <HomeIcon size={18} className="mt-2" />
                     <div>
                       <h4 className="font-semibold text-lg">Location</h4>
-                      <p className="text-text-700">Lagos, Nigeria.</p>
+                      <p className="text-text-700 dark:text-text-200">Lagos, Nigeria.</p>
                     </div>
                   </div>
                 </div>

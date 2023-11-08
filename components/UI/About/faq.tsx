@@ -58,9 +58,12 @@ const FAQComponent: React.FC = () => {
         <h4 className="font-extrabold text-5xl">FAQ</h4>
         <div className="grid sm:grid-cols-2 gap-4 select-none">
           {faqs.map((faq, index) => (
-            <div key={index} className="bg-white shadow-xl self-start duration-200 rounded-lg p-3">
+            <div
+              key={index}
+              className="bg-white dark:bg-background-900 shadow-xl self-start duration-200 rounded-lg p-3"
+            >
               <div
-                className="cursor-pointer flex justify-between items-center py-2 border-b border-gray-300"
+                className="cursor-pointer flex justify-between items-center py-2 border-b border-gray-300 dark:border-background-700"
                 onClick={() => toggleFAQ(index)}
               >
                 <div className="font-semibold text-lg">{faq.question}</div>
@@ -70,7 +73,7 @@ const FAQComponent: React.FC = () => {
                   />
                 </div>
               </div>
-              {activeIndex === index && <div className="py-2 text-text-700">{faq.answer}</div>}
+              {activeIndex === index && <div className="py-2 text-text-700 dark:text-text-300">{faq.answer}</div>}
             </div>
           ))}
         </div>
