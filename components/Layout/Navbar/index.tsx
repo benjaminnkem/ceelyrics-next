@@ -25,13 +25,13 @@ export const useNavbarStore = create<NavStore>(() => ({
     { label: "Home", path: "/" },
     { label: "About", path: "/about" },
     { label: "Contact Us", path: "/contact" },
-    { label: "", path: "/search", icon: <SearchIcon className="text-text-600" size={16} /> },
+    { label: "", path: "/search", icon: <SearchIcon className="text-text-600 dark:text-text-300" size={16} /> },
     {
       label: "",
       path: "/account/login",
       icon: (
         <div className="p-1 border-text-500 flex items-center justify-center border rounded-full">
-          <User2Icon className="text-text-600" size={16} />
+          <User2Icon className="text-text-600 dark:text-text-300" size={16} />
         </div>
       ),
     },
@@ -91,11 +91,6 @@ const Navbar = () => {
 
   return (
     <>
-      <Modal isOpen={openModal} onClose={() => setOpenModal(false)}>
-        <h2>Modal Content</h2>
-        <p>This is an example of a custom reusable modal in Next.js.</p>
-      </Modal>
-
       <nav className="mt-4 top-0 left-0 fixed z-[500] w-full" ref={navbarRef}>
         <WidthClamp>
           <div className="w-full flex items-center justify-between overflow-hidden bg-white dark:bg-background-800 rounded-full py-3 px-5 shadow-xl navContainer">

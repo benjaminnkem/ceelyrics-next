@@ -22,9 +22,8 @@ const RootLayout: React.FC<RootLayoutProps> = (props) => {
       <body className={`${dmSans.className} dark:bg-background-950 dark:text-text-50`}>
         <Providers>
           <Navbar />
-          {/* <div className="h-[6rem]"></div> */}
-          {props.children}
           {props.modal}
+          {props.children}
           <Footer />
         </Providers>
       </body>

@@ -151,6 +151,10 @@ body {
   overflow-y: auto;
 }
 
+input {
+  outline: none;
+}
+
 body {
   transition: color 0.2s, background-color 0.2s;
 }

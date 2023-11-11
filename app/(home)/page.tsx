@@ -11,7 +11,6 @@ const getInitialData = async () => {
 };
 
 const Home = async () => {
-  const init = await getInitialData();
   return <HomeContent />;
 };
 
