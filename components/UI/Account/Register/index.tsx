@@ -5,6 +5,9 @@ import "remixicon/fonts/remixicon.css";
 import classNames from "classnames";
 import Link from "next/link";
 import RightToLeftIntro from "@/components/Common/Intros/right-to-left";
+import { useState } from "react";
+import { BASE_API_URL } from "@/lib/constants/variables";
+import toast from "react-hot-toast";
 
 const signUpBtnClass = classNames([
   "w-full bg-primary-600 py-2 rounded-lg flex items-center gap-3 justify-center",
@@ -12,6 +15,29 @@ const signUpBtnClass = classNames([
 ]);
 
 const RegisterForm = () => {
+  const [values, setValues] = useState({ firstName: "", lastName: "", email: "", password: "" });
+  const [loading, setLoading] = useState(false);
+  const updateValues = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setValues({ ...values, [e.target.name as keyof typeof values]: e.target.value });
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // const { firstName, lastName, email, password } = values;
+
+    setLoading(true);
+    try {
+      await fetch(`${BASE_API_URL}/user/register`, {
+        method: "post",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(values),
+      });
+    } catch (e) {
+      toast.error("An error occurred", { id: "err" });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <div className="bg-white dark:bg-background-950 overflow-x-hidden overflow-y-auto">
@@ -19,7 +45,7 @@ const RegisterForm = () => {
         <div className="md:my-[1rem] md:min-w-[16rem] w-11/12 p-5 rounded-lg mx-auto bg-white dark:bg-background-900 relative">
           <div>
             <h1 className="font-bold text-4xl mb-4">Create An Account</h1>
-            <form onSubmit={(e) => e.preventDefault()}>
+            <form onSubmit={(e) => onSubmit(e)}>
               <div className="space-y-6">
                 <div className="md:grid grid-cols-2 gap-2">
                   <div className="space-y-1">
@@ -77,9 +103,7 @@ const RegisterForm = () => {
                 </div>
 
                 <div className="space-y-1">
-                  <button className={signUpBtnClass}>
-                    Create Account <PlaneIcon />
-                  </button>
+                  <button className={signUpBtnClass}>Create Account</button>
                   <p className="text-sm text-text-600 dark:text-text-300">
                     Have an account?{" "}
                     <Link href={"/account/login"}>

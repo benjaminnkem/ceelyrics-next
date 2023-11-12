@@ -7,7 +7,7 @@ import { HomeIcon, MenuIcon, SearchIcon, User2Icon, XIcon } from "lucide-react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { usePathname } from "next/navigation";
-import Modal from "@/components/Common/Modals/search-modal";
+import { useSession } from "next-auth/react";
 
 interface NavLink {
   label: string;
@@ -42,7 +42,7 @@ const Navbar = () => {
   const { links } = useNavbarStore();
   const navbarRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
-  const [openModal, setOpenModal] = useState(false);
+  const { data: session } = useSession();
 
   useLayoutEffect(() => {
     const cxt = gsap.context(() => {

@@ -13,7 +13,7 @@ const Providers: React.FC<React.PropsWithChildren> = ({ children }) => {
       minWidth: "250px",
     },
     duration: 3000,
-    position: "bottom-center",
+    position: "top-right",
   };
 
   return (

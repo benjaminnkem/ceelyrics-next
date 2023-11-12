@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { dmSans } from "@/lib/fonts";
+import { dmSans, satoshi } from "@/lib/fonts";
 import Providers from "@/lib/utils/providers";
 import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
@@ -19,7 +19,7 @@ interface RootLayoutProps {
 const RootLayout: React.FC<RootLayoutProps> = (props) => {
   return (
     <html lang="en">
-      <body className={`${dmSans.className} dark:bg-background-950 dark:text-text-50`}>
+      <body className={`${satoshi.className} dark:bg-background-950 dark:text-text-50`}>
         <Providers>
           <Navbar />
           {props.modal}
