@@ -8,6 +8,16 @@ import RightToLeftIntro from "@/components/Common/Intros/right-to-left";
 import { useState } from "react";
 import { BASE_API_URL } from "@/lib/constants/variables";
 import toast from "react-hot-toast";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import FormLoader from "@/components/Common/Loaders/form-loader";
+
+interface Values {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+}
 
 const signUpBtnClass = classNames([
   "w-full bg-primary-600 py-2 rounded-lg flex items-center gap-3 justify-center",
@@ -15,15 +25,17 @@ const signUpBtnClass = classNames([
 ]);
 
 const RegisterForm = () => {
-  const [values, setValues] = useState({ firstName: "", lastName: "", email: "", password: "" });
   const [loading, setLoading] = useState(false);
-  const updateValues = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setValues({ ...values, [e.target.name as keyof typeof values]: e.target.value });
+  const router = useRouter();
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // const { firstName, lastName, email, password } = values;
+  const {
+    register,
+    // formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm<Values>({ defaultValues: { firstName: "", lastName: "", email: "", password: "" } });
 
+  const onSubmit: SubmitHandler<Values> = async (values) => {
     setLoading(true);
     try {
       await fetch(`${BASE_API_URL}/user/register`, {
@@ -31,6 +43,9 @@ const RegisterForm = () => {
         headers: { "content-type": "application/json" },
         body: JSON.stringify(values),
       });
+      toast.success("Registered successfully", { id: "success" });
+      reset();
+      router.push("/account/login");
     } catch (e) {
       toast.error("An error occurred", { id: "err" });
     } finally {
@@ -40,14 +55,16 @@ const RegisterForm = () => {
 
   return (
     <>
+      {loading && <FormLoader />}
+
       <div className="bg-white dark:bg-background-950 overflow-x-hidden overflow-y-auto">
         <RightToLeftIntro />
         <div className="md:my-[1rem] md:min-w-[16rem] w-11/12 p-5 rounded-lg mx-auto bg-white dark:bg-background-900 relative">
           <div>
             <h1 className="font-bold text-4xl mb-4">Create An Account</h1>
-            <form onSubmit={(e) => onSubmit(e)}>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <div className="space-y-6">
-                <div className="md:grid grid-cols-2 gap-2">
+                <div className="grid md:grid-cols-2 md:gap-2 gap-6">
                   <div className="space-y-1">
                     <label htmlFor="firstName" className="font-semibold">
                       First Name
@@ -57,6 +74,7 @@ const RegisterForm = () => {
                       id="firstName"
                       placeholder="Enter first name"
                       className="outline-none block dark:bg-background-800 w-full p-2 border-b-2 rounded"
+                      {...register("firstName", { required: { value: true, message: "First Name is required" } })}
                     />
                   </div>
                   <div className="space-y-1">
@@ -68,6 +86,7 @@ const RegisterForm = () => {
                       id="lastName"
                       placeholder="Enter last name"
                       className="outline-none block dark:bg-background-800 w-full p-2 border-b-2 rounded"
+                      {...register("lastName", { required: { value: true, message: "Last Name is required" } })}
                     />
                   </div>
                 </div>
@@ -80,6 +99,7 @@ const RegisterForm = () => {
                     id="email"
                     placeholder="Enter email address"
                     className="outline-none block dark:bg-background-800 w-full p-2 border-b-2 rounded"
+                    {...register("email", { required: { value: true, message: "Email is required" } })}
                   />
                 </div>
                 <div className="space-y-1">
@@ -91,6 +111,7 @@ const RegisterForm = () => {
                     id="password"
                     placeholder="**********"
                     className="outline-none block dark:bg-background-800 w-full p-2 border-b-2 rounded"
+                    {...register("password", { required: { value: true, message: "A password is required." } })}
                   />
                 </div>
 

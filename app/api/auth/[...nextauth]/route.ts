@@ -1,9 +1,9 @@
 import { BASE_API_URL } from "@/lib/constants/variables";
-import { AuthOptions } from "next-auth";
+import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-export const authOptions: AuthOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "credentials",
@@ -51,5 +51,4 @@ export const authOptions: AuthOptions = {
 };
 
 const handler = NextAuth(authOptions);
-
 export { handler as GET, handler as POST };
