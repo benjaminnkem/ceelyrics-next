@@ -1,12 +1,19 @@
-import RightToLeftIntro from "@/components/Common/Intros/right-to-left";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import LoginForm from "@/components/UI/Account/Login";
-import RegisterForm from "@/components/UI/Account/Register";
 import { poppins } from "@/lib/fonts";
 import { HomeIcon } from "lucide-react";
+import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
-const Login = () => {
+const Login = async () => {
+  const session = await getServerSession(authOptions);
+
+  if (session) {
+    redirect("/");
+  }
+
   return (
     <>
       <main>

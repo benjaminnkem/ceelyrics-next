@@ -1,4 +1,5 @@
 import { BASE_API_URL } from "@/lib/constants/variables";
+import axios from "axios";
 import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -15,17 +16,11 @@ export const authOptions: NextAuthOptions = {
         if (!credentials?.email || !credentials?.password) return null;
         const { email, password } = credentials;
 
-        const res = await fetch(`${BASE_API_URL}/auth/login`, {
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({ email, password }),
-        });
+        const res = await axios.post(`${BASE_API_URL}/auth/login`, { email, password });
 
-        if (res.status === 401) {
-          console.log(res.statusText);
-          return null;
-        }
+        if (res.status === 401) return null;
 
-        const user = await res.json();
+        const { data: user } = res;
         return user;
       },
     }),
@@ -44,8 +39,7 @@ export const authOptions: NextAuthOptions = {
     },
   },
   pages: {
-    signIn: "/account/login",
-    signOut: "/account/login",
+    signIn: "/",
     error: "/account/login",
   },
 };

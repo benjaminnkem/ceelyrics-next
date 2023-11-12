@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import FormLoader from "@/components/Common/Loaders/form-loader";
+import axios from "axios";
 
 interface Values {
   firstName: string;
@@ -38,11 +39,7 @@ const RegisterForm = () => {
   const onSubmit: SubmitHandler<Values> = async (values) => {
     setLoading(true);
     try {
-      await fetch(`${BASE_API_URL}/user/register`, {
-        method: "post",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(values),
-      });
+      await axios.post(`${BASE_API_URL}/user/register`, values);
       toast.success("Registered successfully", { id: "success" });
       reset();
       router.push("/account/login");
@@ -62,7 +59,7 @@ const RegisterForm = () => {
         <div className="md:my-[1rem] md:min-w-[16rem] w-11/12 p-5 rounded-lg mx-auto bg-white dark:bg-background-900 relative">
           <div>
             <h1 className="font-bold text-4xl mb-4">Create An Account</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} noValidate>
               <div className="space-y-6">
                 <div className="grid md:grid-cols-2 md:gap-2 gap-6">
                   <div className="space-y-1">
@@ -99,7 +96,16 @@ const RegisterForm = () => {
                     id="email"
                     placeholder="Enter email address"
                     className="outline-none block dark:bg-background-800 w-full p-2 border-b-2 rounded"
-                    {...register("email", { required: { value: true, message: "Email is required" } })}
+                    {...register("email", {
+                      required: {
+                        value: true,
+                        message: "Please provide your email address",
+                      },
+                      pattern: {
+                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                        message: "Please enter a valid email address",
+                      },
+                    })}
                   />
                 </div>
                 <div className="space-y-1">
