@@ -5,8 +5,13 @@ import { EyeIcon, PlaneIcon, SearchIcon } from "lucide-react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { useLayoutEffect, useRef } from "react";
+import { TrackItem } from "@/lib/types/pages";
 
-const HomeContent = () => {
+interface Props {
+  trackList: TrackItem[];
+}
+
+const HomeContent: React.FC<Props> = ({ trackList }) => {
   const introCoverRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLElement>(null);
   const jumboRef = useRef<HTMLDivElement>(null);
@@ -150,28 +155,26 @@ const HomeContent = () => {
           <WidthClamp>
             <h2 className={`${poppins.className} text-4xl font-bold text-center mb-10`}>Popular Lyrics 🔥</h2>
             <div className="flex items-center overflow-x-hidden">
-              <div className="space-y-16">
-                <div className="flex items-center gap-7 overflow-x-auto">
-                  {Array.from({ length: 4 }).map((_, idx) => (
-                    <div
-                      key={idx}
-                      className="w-80 h-80 p-2 bg-background-100 dark:bg-background-900 flex-shrink-0 rounded-lg relative"
-                    >
-                      <div className="absolute left-0 bottom-0 h-1/2 w-full p-4 space-y-2">
-                        <p className={`font-bold text-3xl ${poppins.className}`}>Red Sky</p>
-                        <p className="text-sm font-light">Taylor Swift</p>
-                        <div className="border border-text-200 w-full"></div>
-                      </div>
+              <div className="flex items-center gap-7 overflow-x-auto">
+                {trackList.map((track) => (
+                  <div
+                    key={track.track.album_id}
+                    className="w-80 h-40 p-2 bg-background-100 dark:bg-background-900 flex-shrink-0 rounded-lg flex justify-end flex-col"
+                  >
+                    <div className="w-full p-4 space-y-2">
+                      <p className={`font-bold text-3xl ${poppins.className}`}>{track.track.album_name}</p>
+                      <p className="text-sm">{track.track.artist_name}</p>
+                      {/* <div className="border border-text-200 w-full"></div> */}
                     </div>
-                  ))}
-                </div>
-
-                <div className="mx-auto w-fit">
-                  <button className="border-background-600 border-b-2 flex items-center gap-2 hover:bg-background-200 px-4 py-2 shadow-md rounded-lg transition-colors duration-200">
-                    <span>Discover More</span> <SearchIcon size={20} />
-                  </button>
-                </div>
+                  </div>
+                ))}
               </div>
+            </div>
+
+            <div className="mx-auto flex items-center justify-center mt-16">
+              <button className="border-background-600 border-b-2 flex items-center gap-2 hover:bg-background-200 px-4 py-2 shadow-md rounded-lg transition-colors duration-200">
+                <span>Discover More</span> <SearchIcon size={20} />
+              </button>
             </div>
           </WidthClamp>
         </section>

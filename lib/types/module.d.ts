@@ -3,5 +3,7 @@ declare namespace NodeJS {
     SITE_URL: string;
     NEXT_PUBLIC_BASE_API_URL: string;
     NEXTAUTH_SECRET: string;
+    NEXT_PUBLIC_MM_API_URL: string;
+    NEXT_PUBLIC_MM_API_KEY: string;
   }
 }
