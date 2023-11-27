@@ -49,9 +49,14 @@ const Footer = () => {
                 <div className="space-y-1 max-w-sm">
                   <p className="text-text-700 dark:text-text-400">{quotes[1]} -</p>
                 </div>
-                <button className="bg-background-800 px-4 py-2 flex items-center gap-2 text-white rounded-lg">
-                  <span>Support Us</span> <CoffeeIcon />
-                </button>
+
+                <div>
+                  <Link href={"https://ko-fi.com/benjaminnkem"} target="_blank">
+                    <button className="bg-background-800 px-4 py-2 flex items-center gap-2 text-white rounded-lg">
+                      <span>Support Us</span> <CoffeeIcon />
+                    </button>
+                  </Link>
+                </div>
               </div>
 
               <div className="flex lg:gap-[10rem] gap-20">
