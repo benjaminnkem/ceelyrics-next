@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { dmSans, satoshi } from "@/lib/fonts";
+import { satoshi } from "@/lib/fonts";
 import Providers from "@/lib/utils/providers";
 import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import { ReactNode } from "react";
+import KofiSupport from "@/components/Common/Kofi";
+import dynamic from "next/dynamic";
 
 export const metadata: Metadata = {
   title: "Ceelyrics - Next",
@@ -16,6 +18,8 @@ interface RootLayoutProps {
   modal: ReactNode;
 }
 
+// const KofiButton = dynamic(() => import("@/components/Common/Kofi/index"));
+
 const RootLayout: React.FC<RootLayoutProps> = (props) => {
   return (
     <html lang="en">
@@ -26,6 +30,8 @@ const RootLayout: React.FC<RootLayoutProps> = (props) => {
           {props.children}
           <Footer />
         </Providers>
+
+        {/* <KofiButton /> */}
       </body>
     </html>
   );

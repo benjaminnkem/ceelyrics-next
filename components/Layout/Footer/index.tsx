@@ -2,7 +2,7 @@
 import Link from "next/link";
 import WidthClamp from "../Clamp";
 import { CoffeeIcon, TwitterIcon, YoutubeIcon } from "lucide-react";
-import { poppins } from "@/lib/fonts";
+import { openSans } from "@/lib/fonts";
 import { useNavbarStore } from "../Navbar";
 import { usePathname } from "next/navigation";
 
@@ -39,7 +39,7 @@ const Footer = () => {
         <div className="rounded-lg py-10 px-16 bg-background-100 dark:bg-background-900 dark:text-text-50 mb-10 mt-4">
           <div className="md:space-y-6 space-y-4">
             <div className="md:mb-6 mb-4">
-              <Link href={"/"} className={`${poppins.className} font-extrabold text-xl`}>
+              <Link href={"/"} className={`${openSans.className} font-extrabold text-xl`}>
                 Ceelyrics
               </Link>
             </div>

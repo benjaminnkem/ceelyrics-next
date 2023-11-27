@@ -4,7 +4,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gsap } from "gsap";
 import { DefaultToastOptions, Toaster } from "react-hot-toast";
 import { SessionProvider } from "next-auth/react";
-import { useEffect } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 

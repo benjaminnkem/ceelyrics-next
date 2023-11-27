@@ -1,6 +1,6 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import LoginForm from "@/components/UI/Account/Login";
-import { poppins } from "@/lib/fonts";
+import { openSans } from "@/lib/fonts";
 import { HomeIcon } from "lucide-react";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
@@ -35,7 +35,7 @@ const Login = async () => {
               </Link>
 
               <div className="text-center space-y-4">
-                <h2 className={`${poppins.className} text-5xl font-bold`}>Welcome Back!</h2>
+                <h2 className={`${openSans.className} text-5xl font-bold`}>Welcome Back!</h2>
                 <p className="text-text-100 text-lg">Dive into the World of Lyrics!</p>
               </div>
             </div>

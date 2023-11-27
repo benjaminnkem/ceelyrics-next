@@ -1,13 +1,14 @@
 "use client";
 import WidthClamp from "@/components/Layout/Clamp";
-import { poppins } from "@/lib/fonts";
+import { openSans } from "@/lib/fonts";
 import { EyeIcon, PlaneIcon, SearchIcon } from "lucide-react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { useLayoutEffect, useRef } from "react";
 import { TrackItem } from "@/lib/types/pages";
+import HorizontalTrackList from "./horizontal-track-list";
 
-interface Props {
+export interface Props {
   trackList: TrackItem[];
 }
 
@@ -117,7 +118,7 @@ const HomeContent: React.FC<Props> = ({ trackList }) => {
                 <div className="space-y-4 text-center md:text-start md:col-span-3 col-span-full">
                   <div className="overflow-hidden">
                     <h1
-                      className={`${poppins.className} md:text-5xl text-4xl font-extrabold leading-relaxed jumbo-text`}
+                      className={`${openSans.className} md:text-5xl text-4xl font-extrabold leading-relaxed jumbo-text`}
                     >
                       Unlock Poetry: Discover the Music in Lyrics
                     </h1>
@@ -153,23 +154,8 @@ const HomeContent: React.FC<Props> = ({ trackList }) => {
       <main>
         <section className="my-16">
           <WidthClamp>
-            <h2 className={`${poppins.className} text-4xl font-bold text-center mb-10`}>Popular Lyrics 🔥</h2>
-            <div className="flex items-center overflow-x-hidden">
-              <div className="flex items-center gap-7 overflow-x-auto">
-                {trackList.map((track) => (
-                  <div
-                    key={track.track.album_id}
-                    className="w-80 h-40 p-2 bg-background-100 dark:bg-background-900 flex-shrink-0 rounded-lg flex justify-end flex-col"
-                  >
-                    <div className="w-full p-4 space-y-2">
-                      <p className={`font-bold text-3xl ${poppins.className}`}>{track.track.album_name}</p>
-                      <p className="text-sm">{track.track.artist_name}</p>
-                      {/* <div className="border border-text-200 w-full"></div> */}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            
+            <HorizontalTrackList trackList={trackList} />
 
             <div className="mx-auto flex items-center justify-center mt-16">
               <button className="border-background-600 border-b-2 flex items-center gap-2 hover:bg-background-200 px-4 py-2 shadow-md rounded-lg transition-colors duration-200">
@@ -181,7 +167,7 @@ const HomeContent: React.FC<Props> = ({ trackList }) => {
 
         <section className="md:my-[10rem] my-20">
           <WidthClamp>
-            <h3 className={`${poppins.className} md:text-4xl text-3xl text-center font-bold mb-10`}>Trending Album</h3>
+            <h3 className={`${openSans.className} md:text-4xl text-3xl text-center font-bold mb-10`}>Trending Album</h3>
             <div className="grid md:grid-cols-2 lg:gap-12 md:gap-10 gap-8">
               <div className="flex items-center justify-center w-full min-h-[16rem] md:h-auto">
                 <div className="md:w-auto lg:min-h-[30rem] md:min-h-[25rem] w-full min-h-[16rem] md:aspect-square bg-background-200 dark:bg-background-800 rounded-lg"></div>
@@ -189,15 +175,15 @@ const HomeContent: React.FC<Props> = ({ trackList }) => {
               <div className="space-y-6 text-center md:text-start">
                 <div>
                   <p className="text-text-700">Artist</p>
-                  <h4 className={`${poppins.className} text-3xl font-bold`}>Taylor Swift</h4>
+                  <h4 className={`${openSans.className} text-3xl font-bold`}>Taylor Swift</h4>
                 </div>
                 <div>
                   <p className="text-text-700">Album</p>
-                  <h4 className={`${poppins.className} text-2xl font-semibold`}>Heartful</h4>
+                  <h4 className={`${openSans.className} text-2xl font-semibold`}>Heartful</h4>
                 </div>
                 <div>
                   <p className="text-text-700">Release Date</p>
-                  <h4 className={`${poppins.className} text-xl font-semibold`}>10th June, 2022</h4>
+                  <h4 className={`${openSans.className} text-xl font-semibold`}>10th June, 2022</h4>
                 </div>
 
                 <button className="flex items-center border-accent-400 gap-1 border-b-2 mx-auto md:mx-0 duration-100 hover:border-b-4 py-1">
@@ -210,7 +196,7 @@ const HomeContent: React.FC<Props> = ({ trackList }) => {
 
         <section className="md:my-[10rem] my-20">
           <WidthClamp>
-            <h3 className={`${poppins.className} md:text-4xl text-3xl text-center font-bold mb-10`}>Popular Genres</h3>
+            <h3 className={`${openSans.className} md:text-4xl text-3xl text-center font-bold mb-10`}>Popular Genres</h3>
             <div className="space-y-16">
               <div className="flex items-center gap-7 overflow-x-auto">
                 {Array.from({ length: 8 }).map((_, idx) => (

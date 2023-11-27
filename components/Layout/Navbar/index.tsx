@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { create } from "zustand";
 import WidthClamp from "../Clamp";
-import { poppins } from "@/lib/fonts";
+import { openSans } from "@/lib/fonts";
 import { HomeIcon, MenuIcon, SearchIcon, User2Icon, XIcon } from "lucide-react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
@@ -96,7 +96,7 @@ const Navbar = () => {
           <div className="w-full flex items-center justify-between overflow-hidden bg-white dark:bg-background-800 rounded-full py-3 px-5 shadow-xl navContainer">
             <Link
               href={"/"}
-              className={`text-xl ${poppins.className} text-black dark:text-white font-extrabold`}
+              className={`text-xl ${openSans.className} text-black dark:text-white font-extrabold`}
               id="logo"
             >
               Ceelyrics

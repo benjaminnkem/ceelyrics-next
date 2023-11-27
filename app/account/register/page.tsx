@@ -1,5 +1,5 @@
 import RegisterForm from "@/components/UI/Account/Register";
-import { poppins } from "@/lib/fonts";
+import { openSans } from "@/lib/fonts";
 import { HomeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -25,7 +25,7 @@ const Register = () => {
             </Link>
 
             <div className="text-center space-y-4">
-              <h2 className={`${poppins.className} text-5xl font-bold`}>Join Us</h2>
+              <h2 className={`${openSans.className} text-5xl font-bold`}>Join Us</h2>
               <p className="text-text-100 text-lg">Become a Member - Dive into the World of Lyrics!</p>
             </div>
           </div>
