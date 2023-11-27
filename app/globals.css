@@ -138,11 +138,11 @@
 }
 
 ::selection {
-  background: #8800cc3a;
+  background: #4f4f4f4a;
 }
 
 ::-moz-selection {
-  background: #8800cc3a;
+  background: #4f4f4f4a;
 }
 
 html,

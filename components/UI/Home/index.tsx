@@ -7,6 +7,7 @@ import { gsap } from "gsap";
 import { useLayoutEffect, useRef } from "react";
 import { TrackItem } from "@/lib/types/pages";
 import HorizontalTrackList from "./horizontal-track-list";
+import Hero from "./hero";
 
 export interface Props {
   trackList: TrackItem[];
@@ -14,8 +15,6 @@ export interface Props {
 
 const HomeContent: React.FC<Props> = ({ trackList }) => {
   const introCoverRef = useRef<HTMLDivElement>(null);
-  const headerRef = useRef<HTMLElement>(null);
-  const jumboRef = useRef<HTMLDivElement>(null);
   const subscribeRef = useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {
@@ -27,32 +26,6 @@ const HomeContent: React.FC<Props> = ({ trackList }) => {
         .from("#ceeDot", { xPercent: 100, opacity: 0, ease: "elastic.out(1,0.3)", duration: 0.5 })
         .to(".layer", { xPercent: -100, stagger: { amount: 0.2 } });
     }, introCoverRef);
-
-    return () => cxt.revert();
-  }, []);
-
-  useLayoutEffect(() => {
-    const cxt = gsap.context(() => {
-      const t1 = gsap.timeline({
-        scrollTrigger: {
-          trigger: headerRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: 1,
-        },
-      });
-
-      t1.from("#headCoverImage", { scale: 1.1, yPercent: 5 });
-    }, headerRef);
-
-    return () => cxt.revert();
-  }, []);
-
-  useLayoutEffect(() => {
-    const cxt = gsap.context(() => {
-      const t1 = gsap.timeline({ delay: 3 });
-      t1.from(".jumbo-text", { yPercent: 40, opacity: 0, stagger: { amount: 0.2 } });
-    }, jumboRef);
 
     return () => cxt.revert();
   }, []);
@@ -97,64 +70,11 @@ const HomeContent: React.FC<Props> = ({ trackList }) => {
         <div className="layer layer-cover fixed top-0 left-0 w-full min-h-screen bg-primary-700 z-[540]"></div>
       </div>
 
-      <header ref={headerRef}>
-        <div id="jumbo" className="min-h-[40rem] flex items-center relative">
-          <div className="absolute top-0 left-0 w-full overflow-hidden h-full select-none">
-            <Image
-              src={`/images/backgrounds/home.jpg`}
-              alt="home cover"
-              id="headCoverImage"
-              width={1920}
-              height={800}
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black"></div>
-
-          <div className="absolute top-0 left-0 text-white flex items-center w-full h-full" ref={jumboRef}>
-            <WidthClamp>
-              <div className="grid md:grid-cols-5 gap-2 items-center h-full">
-                <div className="space-y-4 text-center md:text-start md:col-span-3 col-span-full">
-                  <div className="overflow-hidden">
-                    <h1
-                      className={`${openSans.className} md:text-5xl text-4xl font-extrabold leading-relaxed jumbo-text`}
-                    >
-                      Unlock Poetry: Discover the Music in Lyrics
-                    </h1>
-                  </div>
-                  <div className="overflow-hidden">
-                    <p className="leading-relaxed jumbo-text">
-                      Step into a world of stories and emotions. <span className="font-bold">Lyrics</span> weave tales
-                      in every line, capturing the essence of songs you love. Discover, sing along, and unravel the
-                      magic of every verse. Join us to explore the powerful storytelling within each lyric.
-                    </p>
-                  </div>
-                  <div className="mx-auto md:mx-0 w-fit jumbo-text overflow-hidden">
-                    <button className="border-primary-600 border flex items-center gap-2 text-text-50 hover:bg-primary-600 px-4 py-2 rounded-xl transition-colors duration-200">
-                      <span>Explore</span> <PlaneIcon size={16} />
-                    </button>
-                  </div>
-                </div>
-                <div className="grid place-content-center">
-                  {/* <Image
-                  src={`/images/illustrations/sit-playlist.svg`}
-                  draggable={false}
-                  width={600}
-                  height={600}
-                  alt="Intro Illustration"
-                /> */}
-                </div>
-              </div>
-            </WidthClamp>
-          </div>
-        </div>
-      </header>
+      <Hero />
 
       <main>
         <section className="my-16">
           <WidthClamp>
-            
             <HorizontalTrackList trackList={trackList} />
 
             <div className="mx-auto flex items-center justify-center mt-16">

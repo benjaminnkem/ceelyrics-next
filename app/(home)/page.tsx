@@ -13,14 +13,14 @@ const getInitialData = async (): Promise<InitialTrackResponse> => {
 };
 
 const Home = async () => {
-  const data = await getInitialData();
-  const {
-    message: {
-      body: { track_list },
-    },
-  } = data;
+  // const data = await getInitialData();
+  // const {
+  //   message: {
+  //     body: { track_list },
+  //   },
+  // } = data;
 
-  return <HomeContent trackList={track_list} />;
+  return <HomeContent trackList={[]} />;
 };
 
 export default Home;
