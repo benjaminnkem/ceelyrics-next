@@ -9,7 +9,7 @@ export interface Props {
 const HorizontalTrackList: React.FC<Props> = ({ trackList }) => {
   return (
     <>
-      <div className="grid grid-cols-5 grid-rows-2 gap-2">
+      <div className="grid grid-cols-5 grid-rows-2 gap-2 text-white">
         <div className="col-span-2 relative group cursor-pointer overflow-hidden bg-background-800 rounded-lg row-span-2">
           <Image
             src={"/images/backgrounds/home/music1.jpg"}

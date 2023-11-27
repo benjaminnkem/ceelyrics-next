@@ -1,9 +1,9 @@
 import WidthClamp from "@/components/Layout/Clamp";
 import { openSans } from "@/lib/fonts";
 import { gsap } from "gsap";
-import { Search } from "lucide-react";
 import Image from "next/image";
 import { useLayoutEffect, useRef } from "react";
+import HeroSearch from "./hero-search";
 
 const Hero = () => {
   const headerRef = useRef<HTMLElement>(null);
@@ -28,8 +28,15 @@ const Hero = () => {
 
   useLayoutEffect(() => {
     const cxt = gsap.context(() => {
-      const t1 = gsap.timeline({ delay: 3 });
-      t1.from(".jumbo-text", { yPercent: 40, opacity: 0, stagger: { amount: 0.2 } });
+      const t1 = gsap.timeline({ delay: 2.8 });
+      t1.from(".jumbo-text", {
+        yPercent: 100,
+        opacity: 0,
+        skewY: 4,
+        duration: 1.4,
+        ease: "power4.out",
+        stagger: { amount: 0.3 },
+      }).from(".jumbo-search", { opacity: 0 }, 1);
     }, jumboRef);
 
     return () => cxt.revert();
@@ -75,10 +82,7 @@ const Hero = () => {
                   </button>
                 </div> */}
 
-                <div className="w-full rounded-md border outline-none px-2 border-white/40 bg-black/20 flex items-center gap-4">
-                  <Search size={20} />
-                  <input type="text" className="bg-transparent w-full py-2" placeholder="Search for a lyrics..." />
-                </div>
+                <HeroSearch />
               </div>
               <div className="grid place-content-center">
                 {/* <Image
