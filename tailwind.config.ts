@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      container: {
+        center: true,
+      },
       colors: {
         text: {
           50: "var(--text-50)",

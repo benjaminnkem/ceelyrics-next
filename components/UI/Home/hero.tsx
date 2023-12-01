@@ -1,4 +1,3 @@
-import WidthClamp from "@/components/Layout/Clamp";
 import { openSans } from "@/lib/fonts";
 import { gsap } from "gsap";
 import Image from "next/image";
@@ -59,7 +58,7 @@ const Hero = () => {
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-background-950 to-transparent"></div>
 
         <div className="absolute top-0 left-0 text-white flex items-center w-full h-full" ref={jumboRef}>
-          <WidthClamp>
+          <div className="container mx-auto">
             <div className="grid md:grid-cols-5 gap-2 items-center h-full">
               <div className="space-y-4 text-center md:text-start md:col-span-3 col-span-full">
                 <div className="overflow-hidden">
@@ -94,7 +93,7 @@ const Hero = () => {
             /> */}
               </div>
             </div>
-          </WidthClamp>
+          </div>
         </div>
       </div>
     </header>

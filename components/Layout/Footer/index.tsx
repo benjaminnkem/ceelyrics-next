@@ -53,7 +53,7 @@ const Footer = () => {
                 <div>
                   <Link href={"https://ko-fi.com/benjaminnkem"} target="_blank">
                     <button className="bg-background-800 px-4 py-2 flex items-center gap-2 text-white rounded-lg">
-                      <span>Support Us</span> <CoffeeIcon />
+                      <span>Support me</span> <CoffeeIcon />
                     </button>
                   </Link>
                 </div>
@@ -74,7 +74,7 @@ const Footer = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <p className="uppercase text-text-600">Contact Us</p>
+                  <p className="uppercase text-text-600">Socials</p>
                   <ul className="flex flex-col gap-1">
                     {socialLinks.map((link, idx) => (
                       <li key={idx}>

@@ -21,6 +21,7 @@ const HomeContent: React.FC<Props> = ({ trackList }) => {
     const cxt = gsap.context(() => {
       const timeline = gsap.timeline();
       timeline
+        .set("#ceeTextContainer", { visibility: "visible" })
         .from("#ceeTextContainer", { borderColor: "transparent", duration: 0.5 })
         .from("#ceeText", { yPercent: 100, opacity: 0, duration: 0.5 })
         .from("#ceeDot", { xPercent: 100, opacity: 0, ease: "elastic.out(1,0.3)", duration: 0.5 })
@@ -51,7 +52,7 @@ const HomeContent: React.FC<Props> = ({ trackList }) => {
         <div className="fixed layer z-[600] top-0 left-0 w-full min-h-screen bg-primary-900 text-white layer-cover">
           <div className="w-full min-h-screen grid text-center place-content-center">
             <div
-              className="overflow-hidden py-1 border-white lg:border-b-8 md:border-b-[6px] border-b-[5px] flex"
+              className="overflow-hidden py-1 border-white lg:border-b-8 md:border-b-[6px] border-b-[5px] invisible flex"
               id="ceeTextContainer"
             >
               <p className="lg:text-8xl md:text-7xl sm:text-6xl text-5xl font-extrabold" id="ceeText">
@@ -85,37 +86,46 @@ const HomeContent: React.FC<Props> = ({ trackList }) => {
           </WidthClamp>
         </section>
 
-        <section className="md:my-[10rem] my-20">
-          <WidthClamp>
-            <h3 className={`${openSans.className} md:text-4xl text-3xl text-center font-bold mb-10`}>Trending Album</h3>
-            <div className="grid md:grid-cols-2 lg:gap-12 md:gap-10 gap-8">
-              <div className="flex items-center justify-center w-full min-h-[16rem] md:h-auto">
-                <div className="md:w-auto lg:min-h-[30rem] md:min-h-[25rem] w-full min-h-[16rem] md:aspect-square bg-background-200 dark:bg-background-800 rounded-lg"></div>
-              </div>
-              <div className="space-y-6 text-center md:text-start">
-                <div>
-                  <p className="text-text-700">Artist</p>
-                  <h4 className={`${openSans.className} text-3xl font-bold`}>Taylor Swift</h4>
-                </div>
-                <div>
-                  <p className="text-text-700">Album</p>
-                  <h4 className={`${openSans.className} text-2xl font-semibold`}>Heartful</h4>
-                </div>
-                <div>
-                  <p className="text-text-700">Release Date</p>
-                  <h4 className={`${openSans.className} text-xl font-semibold`}>10th June, 2022</h4>
-                </div>
+        <section className="md:my-[6rem] my-10 container mx-auto">
+          <div className="grid grid-cols-2 gap-16">
+            <div>
+              <h3 className={`${openSans.className}  text-3xl font-bold mb-6`}>Trending Album</h3>
+              <div>
+                <div className="w-full min-h-[16rem] bg-background-200 dark:bg-background-800 rounded-lg"></div>
+                <div className="space-y-6 text-center md:text-start">
+                  <div>
+                    <p className="text-text-700">Artist</p>
+                    <h4 className={`${openSans.className} md:text-2xl text-xl font-bold`}>Taylor Swift</h4>
+                  </div>
+                  <div>
+                    <p className="text-text-700">Album</p>
+                    <h4 className={`${openSans.className} text-2xl font-semibold`}>Heartful</h4>
+                  </div>
+                  <div>
+                    <p className="text-text-700">Release Date</p>
+                    <h4 className={`${openSans.className} text-xl font-semibold`}>10th June, 2022</h4>
+                  </div>
 
-                <button className="flex items-center border-accent-400 gap-1 border-b-2 mx-auto md:mx-0 duration-100 hover:border-b-4 py-1">
-                  <span>View Album</span> <EyeIcon size={18} />
-                </button>
+                  <button className="flex items-center border-accent-400 gap-1 border-b-2 mx-auto md:mx-0 duration-100 py-1">
+                    <span>View Album</span>
+                  </button>
+                </div>
               </div>
             </div>
-          </WidthClamp>
+            <div>
+              <h3 className={`${openSans.className} md:text-2xl text-xl font-bold mb-6`}>Chart</h3>
+
+              <div className="space-y-3">
+                {new Array(10).fill(null).map((_, id) => (
+                  <div key={id} className="w-full py-6 rounded-md bg-background-100"></div>
+                ))}
+              </div>
+            </div>
+          </div>
         </section>
 
-        <section className="md:my-[10rem] my-20">
-          <WidthClamp>
+        <section className="md:my-[8rem] my-20 container mx-auto">
+          <div>
             <h3 className={`${openSans.className} md:text-4xl text-3xl text-center font-bold mb-10`}>Popular Genres</h3>
             <div className="space-y-16">
               <div className="flex items-center gap-7 overflow-x-auto">
@@ -129,7 +139,7 @@ const HomeContent: React.FC<Props> = ({ trackList }) => {
                 ))}
               </div>
             </div>
-          </WidthClamp>
+          </div>
         </section>
 
         <section className="md:my-[10rem] my-20" ref={subscribeRef}>
@@ -150,7 +160,7 @@ const HomeContent: React.FC<Props> = ({ trackList }) => {
                 <div className="space-y-6">
                   <div>
                     <h4 className="text-center text-2xl font-extrabold">Subscribe to our news letter ✨</h4>
-                    <p className="text-sm">We promise not to span you, and you can opt-out at anytime.</p>
+                    <p className="text-sm">We promise not to spam you, and you can opt-out at anytime.</p>
                   </div>
                   <div className="border border-primary-200 p-1 rounded-full">
                     <div className="flex items-center gap-2">

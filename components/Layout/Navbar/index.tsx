@@ -42,13 +42,12 @@ const Navbar = () => {
   const { links } = useNavbarStore();
   const navbarRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
-  const { data: session } = useSession();
 
   useLayoutEffect(() => {
     const cxt = gsap.context(() => {
       const tl = gsap.timeline({ delay: pathname === "/" ? 2 : 1 });
 
-      tl.fromTo(".navContainer", { yPercent: -100, opacity: 0 }, { yPercent: 0, opacity: 100, ease: "bounce.out" })
+      tl.fromTo(".navContainer", { yPercent: -100, opacity: 0 }, { yPercent: 0, opacity: 100, ease: "power4.inOut" })
         .fromTo("#logo", { xPercent: -100, opacity: 0 }, { xPercent: 0, opacity: 100 }, 0)
         .fromTo(".navLink", { xPercent: 20, opacity: 0 }, { xPercent: 0, opacity: 100, stagger: { each: 0.1 } });
 
@@ -92,7 +91,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="mt-4 top-0 left-0 fixed z-[500] w-full" ref={navbarRef}>
-        <WidthClamp>
+        <div className="container mx-auto">
           <div className="w-full flex items-center justify-between overflow-hidden bg-white dark:bg-background-800 rounded-full py-3 px-5 shadow-xl navContainer">
             <Link
               href={"/"}
@@ -118,7 +117,7 @@ const Navbar = () => {
               <MenuIcon className="cursor-pointer" onClick={toggleMobileNav} />
             </div>
           </div>
-        </WidthClamp>
+        </div>
       </nav>
 
       <aside
