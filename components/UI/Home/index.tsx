@@ -1,7 +1,7 @@
 "use client";
 import WidthClamp from "@/components/Layout/Clamp";
 import { openSans } from "@/lib/fonts";
-import { EyeIcon, PlaneIcon, SearchIcon } from "lucide-react";
+import { SearchIcon } from "lucide-react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { useLayoutEffect, useRef } from "react";
@@ -14,22 +14,7 @@ export interface Props {
 }
 
 const HomeContent: React.FC<Props> = ({ trackList }) => {
-  const introCoverRef = useRef<HTMLDivElement>(null);
   const subscribeRef = useRef<HTMLElement>(null);
-
-  useLayoutEffect(() => {
-    const cxt = gsap.context(() => {
-      const timeline = gsap.timeline();
-      timeline
-        .set("#ceeTextContainer", { visibility: "visible" })
-        .from("#ceeTextContainer", { borderColor: "transparent", duration: 0.5 })
-        .from("#ceeText", { yPercent: 100, opacity: 0, duration: 0.5 })
-        .from("#ceeDot", { xPercent: 100, opacity: 0, ease: "elastic.out(1,0.3)", duration: 0.5 })
-        .to(".layer", { xPercent: -100, stagger: { amount: 0.2 } });
-    }, introCoverRef);
-
-    return () => cxt.revert();
-  }, []);
 
   useLayoutEffect(() => {
     const cxt = gsap.context(() => {
@@ -48,34 +33,11 @@ const HomeContent: React.FC<Props> = ({ trackList }) => {
   }, []);
   return (
     <>
-      <div ref={introCoverRef}>
-        <div className="fixed layer z-[600] top-0 left-0 w-full min-h-screen bg-primary-900 text-white layer-cover">
-          <div className="w-full min-h-screen grid text-center place-content-center">
-            <div
-              className="overflow-hidden py-1 border-white lg:border-b-8 md:border-b-[6px] border-b-[5px] invisible flex"
-              id="ceeTextContainer"
-            >
-              <p className="lg:text-8xl md:text-7xl sm:text-6xl text-5xl font-extrabold" id="ceeText">
-                Ceelyrics
-              </p>
-              <span
-                className="text-primary-500 lg:text-8xl md:text-7xl sm:text-6xl text-5xl font-extrabold"
-                id="ceeDot"
-              >
-                .
-              </span>
-            </div>
-          </div>
-        </div>
-        <div className="layer layer-cover fixed top-0 left-0 w-full min-h-screen bg-primary-800 z-[580]"></div>
-        <div className="layer layer-cover fixed top-0 left-0 w-full min-h-screen bg-primary-700 z-[540]"></div>
-      </div>
-
       <Hero />
 
       <main>
         <section className="my-16">
-          <WidthClamp>
+          <div className="container">
             <HorizontalTrackList trackList={trackList} />
 
             <div className="mx-auto flex items-center justify-center mt-16">
@@ -83,7 +45,7 @@ const HomeContent: React.FC<Props> = ({ trackList }) => {
                 <span>Discover More</span> <SearchIcon size={20} />
               </button>
             </div>
-          </WidthClamp>
+          </div>
         </section>
 
         <section className="md:my-[6rem] my-10 container mx-auto">

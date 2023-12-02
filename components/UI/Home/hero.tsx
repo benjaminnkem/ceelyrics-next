@@ -8,6 +8,8 @@ const Hero = () => {
   const headerRef = useRef<HTMLElement>(null);
   const jumboRef = useRef<HTMLDivElement>(null);
 
+  const hasShownIntro = localStorage.getItem("hasShown") === "true";
+
   useLayoutEffect(() => {
     const cxt = gsap.context(() => {
       const t1 = gsap.timeline({
@@ -27,7 +29,7 @@ const Hero = () => {
 
   useLayoutEffect(() => {
     const cxt = gsap.context(() => {
-      const t1 = gsap.timeline({ delay: 2.8 });
+      const t1 = gsap.timeline({ delay: !hasShownIntro ? 2.8 : 0 });
       t1.from(".jumbo-text", {
         yPercent: 100,
         opacity: 0,

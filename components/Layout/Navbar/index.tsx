@@ -45,7 +45,7 @@ const Navbar = () => {
 
   useLayoutEffect(() => {
     const cxt = gsap.context(() => {
-      const tl = gsap.timeline({ delay: pathname === "/" ? 2 : 1 });
+      const tl = gsap.timeline();
 
       tl.fromTo(".navContainer", { yPercent: -100, opacity: 0 }, { yPercent: 0, opacity: 100, ease: "power4.inOut" })
         .fromTo("#logo", { xPercent: -100, opacity: 0 }, { xPercent: 0, opacity: 100 }, 0)
