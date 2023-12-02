@@ -41,17 +41,21 @@ const LoginForm = () => {
     }
   };
 
+  const inputClass = classNames([
+    "outline-none block dark:bg-background-800 w-full p-2 border-b-2 dark:border-none dark:border-background-400 rounded-md",
+  ]);
+
   return (
     <>
       {loading && <FormLoader />}
 
       <div className="bg-white dark:bg-background-900 overflow-x-hidden overflow-y-auto h-screen flex items-center justify-center">
         <RightToLeftIntro />
-        <div className="md:my-[1rem] md:min-w-[16rem] w-11/12 p-5 rounded-lg mx-auto bg-white dark:bg-background-900 relative">
-          <div>
-            <h1 className="font-bold text-4xl mb-4">Login</h1>
+        <div className="md:my-[1rem] w-fit p-6 rounded-2xl mx-auto bg-white dark:bg-background-900 shadow-xl relative">
+          <div className="sm:min-w-[20rem] min-w-[80vw]">
+            <h1 className="font-bold md:text-3xl text-2xl mb-4">Login</h1>
             <form onSubmit={handleSubmit(onSubmit)} noValidate>
-              <div className="space-y-4">
+              <div className="space-y-6">
                 <div className="space-y-1">
                   <label htmlFor="email" className="font-semibold">
                     Email
@@ -60,7 +64,7 @@ const LoginForm = () => {
                     type="text"
                     id="email"
                     placeholder="Enter email address"
-                    className="outline-none block dark:bg-background-800 w-full p-2 border-b-2 rounded"
+                    className={`${inputClass}`}
                     {...register("email", {
                       required: {
                         value: true,
@@ -82,17 +86,17 @@ const LoginForm = () => {
                     type="password"
                     id="password"
                     placeholder="**********"
-                    className="outline-none block dark:bg-background-800 w-full p-2 border-b-2 rounded"
+                    className={`${inputClass}`}
                     {...register("password", { required: { value: true, message: "A password is required." } })}
                   />
                 </div>
 
-                <div className="space-y-1">
+                <div className="space-y-2">
                   <button className={signUpBtnClass}>Login</button>
-                  <p className="text-sm text-text-600 dark:text-text-100">
-                    Don&apos;t have an account?{" "}
+                  <p className="text-xs text-center text-text-600 dark:text-text-200">
+                    Don&apos;t have an account?{"   "}
                     <Link href={"/account/register"}>
-                      <span className="border-b border-primary-700 font-semibold">Create an account</span>
+                      <span className="border-b border-primary-700 font-semibold">Sign up</span>
                     </Link>
                   </p>
                 </div>

@@ -9,7 +9,7 @@ declare module "next-auth" {
       email: string;
       bio?: string;
       image?: string;
-      role?: "BASIC" | "ADMIN" | "SUPERADMIN";
+      role?: "BASIC" | "ADMIN" | "SUPER_ADMIN";
       createdAt: string;
       updatedAt: string;
     };
@@ -30,7 +30,7 @@ declare module "next-auth/jwt" {
       email: string;
       bio?: string;
       image?: string;
-      role?: "BASIC" | "ADMIN" | "SUPERADMIN";
+      role?: "BASIC" | "ADMIN" | "SUPER_ADMIN";
       createdAt: string;
       updatedAt: string;
     };

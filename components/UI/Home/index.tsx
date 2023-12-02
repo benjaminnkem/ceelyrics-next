@@ -87,7 +87,7 @@ const HomeContent: React.FC<Props> = ({ trackList }) => {
         </section>
 
         <section className="md:my-[6rem] my-10 container mx-auto">
-          <div className="grid grid-cols-2 gap-16">
+          <div className="grid md:grid-cols-2 md:gap-16 gap-8">
             <div>
               <h3 className={`${openSans.className}  text-3xl font-bold mb-6`}>Trending Album</h3>
               <div>
@@ -117,7 +117,19 @@ const HomeContent: React.FC<Props> = ({ trackList }) => {
 
               <div className="space-y-3">
                 {new Array(10).fill(null).map((_, id) => (
-                  <div key={id} className="w-full py-6 rounded-md bg-background-100"></div>
+                  <div key={id} className="w-full md:p-4 p-2 rounded-lg group bg-background-100 dark:bg-background-800">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-end gap-4 cursor-pointer">
+                        <p className="font-medium text-2xl">{id + 1}.</p>
+                        <p className="text-lg">Travis Scott - In Berlin Again</p>
+                      </div>
+
+                      {/* <div className="flex items-center">
+                        <EyeIcon className="" size={20} />
+                        <span className="text-sm">2k</span>
+                      </div> */}
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
