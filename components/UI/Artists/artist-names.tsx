@@ -6,10 +6,12 @@ import { Search } from "lucide-react";
 import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import classNames from "classnames";
+import Link from "next/link";
 
-const ArtistGrid: React.FC<{ artists: ArtistResponse[] | undefined }> = ({ artists }) => {
+const ArtistGrid: React.FC<{ artistsResult: ArtistResponse[] | undefined }> = ({ artistsResult }) => {
   const artistsRef = useRef<HTMLDivElement>(null);
-  const [selectedLetter, setSelectedLetter] = useState<string | null>();
+  const [selectedLetter, setSelectedLetter] = useState<string>("a");
+  const [artists, setArtists] = useState(artistsResult?.filter((artist) => artist.stageName[0] === "a"));
 
   useLayoutEffect(() => {
     const cxt = gsap.context(() => {
@@ -17,6 +19,13 @@ const ArtistGrid: React.FC<{ artists: ArtistResponse[] | undefined }> = ({ artis
     }, artistsRef);
     return () => cxt.revert();
   }, []);
+
+  const filterArtists = (letter: string) => {
+    setSelectedLetter(letter);
+
+    const filteredArtists = artistsResult?.filter((artist) => artist.stageName[0] === letter);
+    setArtists(filteredArtists);
+  };
 
   const showHidden = () => {};
 
@@ -30,7 +39,7 @@ const ArtistGrid: React.FC<{ artists: ArtistResponse[] | undefined }> = ({ artis
             { "border-primary-300 shadow-2xl": selectedLetter === letter },
           ]);
           return (
-            <div key={id} className={letterClass} onClick={() => setSelectedLetter(letter)}>
+            <div key={id} className={letterClass} onClick={() => filterArtists(letter)}>
               <span className="capitalize">{letter}</span>
             </div>
           );
@@ -38,17 +47,18 @@ const ArtistGrid: React.FC<{ artists: ArtistResponse[] | undefined }> = ({ artis
       </div>
 
       <div className="mt-16 space-y-4">
-        <h2 className="text-2xl font-bold">
-          Artists Starting With <span className="capitalize text-primary-400 font-extrabold">{selectedLetter}</span>
+        <h2 className="text-4xl font-extrabold">
+          <span className="capitalize text-primary-400">{selectedLetter}</span>
         </h2>
         {selectedLetter && (
           <div className="grid grid-cols-4 gap-4">
             {artists?.map((artist, id) => (
-              <div
-                key={id}
-                className="rounded-xl font-semibold cursor-pointer duration-300 hover:shadow-2xl flex items-center justify-center shadow py-4 bg-white"
-              >
-                <span>{artist.stageName}</span>
+              <div key={id}>
+                <Link href={`/artists/${artist.id}`}>
+                  <div className="rounded-xl font-semibold cursor-pointer duration-300 hover:shadow-2xl flex items-center justify-center shadow py-4 bg-white">
+                    <span>{artist.stageName}</span>
+                  </div>
+                </Link>
               </div>
             ))}
           </div>

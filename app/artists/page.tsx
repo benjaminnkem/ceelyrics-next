@@ -5,7 +5,7 @@ import { openSans } from "@/lib/fonts";
 import { ArtistData } from "@/lib/types/response";
 import Image from "next/image";
 
-export type ArtistResponse = Pick<ArtistData, "stageName">;
+export type ArtistResponse = Pick<ArtistData, "stageName" | "id">;
 
 const fetchArtists = async () => {
   try {
@@ -60,7 +60,7 @@ const Artists = async () => {
         </div>
       </header>
       <main>
-        <ArtistGrid artists={artists} />
+        <ArtistGrid artistsResult={artists} />
       </main>
     </>
   );
