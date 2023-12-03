@@ -72,36 +72,7 @@ const ArtistDetails: React.FC<Params> = async ({ params: { artistId } }) => {
         <div className="md:h-[6rem]"></div>
 
         {artist ? (
-          <div className="md:grid flex flex-col-reverse grid-cols-2 mt-10 gap-8 container">
-            <div className="self-start">
-              <p className="font-extrabold text-3xl mb-1">Details</p>
-
-              <div className="w-fit bg-background-100 p-4 rounded-lg space-y-3">
-                <p>
-                  <span className="font-semibold">Stage Name:</span> {artist.stageName}
-                </p>
-                <p>
-                  <span className="font-semibold">Full Name</span>: {artist.firstName} {artist.middleName}{" "}
-                  {artist.lastName}
-                </p>
-                {/* <p>
-                <span className="font-semibold">Age:</span>
-              </p> */}
-                <p>
-                  <span className="font-semibold">Date Of Birth:</span>{" "}
-                  {new Intl.DateTimeFormat("en-GB").format(new Date(artist.dateOfBirth as string))}
-                </p>
-                <div>
-                  <p className="font-semibold">About Artist:</p>
-                  <p className="whitespace-pre-line">{artist.bio}</p>
-                </div>
-              </div>
-            </div>
-
-            <ArtistAlbums artistId={artistId} />
-
-            <div className="h-[5rem]"></div>
-          </div>
+          <ArtistAlbums artistId={artistId} artist={artist} />
         ) : (
           <div className="container">
             <p className="text-2xl font-extrabold">No artist data</p>

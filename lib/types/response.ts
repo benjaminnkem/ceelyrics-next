@@ -13,12 +13,15 @@ export interface ArtistData {
   albums: [];
 }
 
+export type AlbumType = "Album" | "EP" | "Single";
+
 export interface Album {
   id: string;
   title: string;
   coverImage: string | null;
   description: string;
   releaseDate: string;
+  albumType: AlbumType;
   additionalQuote: string | null;
   createdAt: string;
   updatedAt: string;
