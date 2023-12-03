@@ -35,7 +35,7 @@ const Footer = () => {
 
   return (
     <footer>
-      <WidthClamp>
+      <div className="container">
         <div className="rounded-lg py-10 px-16 bg-background-100 dark:bg-background-900 dark:text-text-50 mb-10 mt-4">
           <div className="md:space-y-6 space-y-4">
             <div className="md:mb-6 mb-4">
@@ -108,7 +108,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </WidthClamp>
+      </div>
     </footer>
   );
 };

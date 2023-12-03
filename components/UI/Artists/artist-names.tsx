@@ -31,11 +31,11 @@ const ArtistGrid: React.FC<{ artistsResult: ArtistResponse[] | undefined }> = ({
 
   return (
     <div className="container my-16" ref={artistsRef}>
-      <div className="grid grid-cols-12 gap-4">
+      <div className="grid lg:grid-cols-12 md:grid-cols-8 grid-cols-5 md:gap-4 gap-2">
         {letters.map((letter, id) => {
           const letterClass = classNames([
-            "rounded-full border-4 border-transparent artist_letter opacity-0 text-xl font-semibold cursor-pointer",
-            "duration-200 hover:shadow-2xl flex items-center justify-center shadow py-2 bg-white",
+            "rounded-full border-4 border-transparent artist_letter opacity-0 md:text-xl md:font-semibold cursor-pointer",
+            "duration-200 hover:shadow-2xl flex items-center justify-center shadow py-2 bg-white font-medium",
             { "border-primary-300 shadow-2xl": selectedLetter === letter },
           ]);
           return (
@@ -48,10 +48,12 @@ const ArtistGrid: React.FC<{ artistsResult: ArtistResponse[] | undefined }> = ({
 
       <div className="mt-16 space-y-4">
         <h2 className="text-4xl font-extrabold">
-          <span className="capitalize text-primary-400">{selectedLetter}</span>
+          <span className="capitalize text-primary-400">
+            {selectedLetter} <span className="text-sm text-black font-normal">({artists?.length})</span>
+          </span>
         </h2>
         {selectedLetter && (
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-4">
             {artists?.map((artist, id) => (
               <div key={id}>
                 <Link href={`/artists/${artist.id}`}>

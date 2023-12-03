@@ -6,7 +6,7 @@ export interface Props {
   trackList: TrackItem[];
 }
 
-const HorizontalTrackList: React.FC<Props> = ({ trackList }) => {
+const ArtistHomeGrid: React.FC<Props> = ({ trackList }) => {
   return (
     <>
       <div className="grid grid-cols-5 grid-rows-2 gap-2 text-white">
@@ -115,4 +115,4 @@ const HorizontalTrackList: React.FC<Props> = ({ trackList }) => {
   );
 };
 
-export default HorizontalTrackList;
+export default ArtistHomeGrid;

@@ -12,3 +12,14 @@ export interface ArtistData {
   updatedAt: string;
   albums: [];
 }
+
+export interface Album {
+  id: string;
+  title: string;
+  coverImage: string | null;
+  description: string;
+  releaseDate: string;
+  additionalQuote: string | null;
+  createdAt: string;
+  updatedAt: string;
+}

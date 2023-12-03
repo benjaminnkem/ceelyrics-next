@@ -1,7 +1,7 @@
 import { openSans } from "@/lib/fonts";
 import { SearchIcon } from "lucide-react";
 import { TrackItem } from "@/lib/types/pages";
-import HorizontalTrackList from "./horizontal-track-list";
+import ArtistHomeGrid from "./horizontal-track-list";
 import Hero from "./hero";
 import SubscribeSection from "./subscribe";
 
@@ -17,7 +17,7 @@ const HomeContent: React.FC<Props> = ({ trackList }) => {
       <main>
         <section className="my-16">
           <div className="container">
-            <HorizontalTrackList trackList={trackList} />
+            <ArtistHomeGrid trackList={trackList} />
 
             <div className="mx-auto flex items-center justify-center mt-16">
               <button className="border-background-600 border-b-2 flex items-center gap-2 hover:bg-background-200 px-4 py-2 shadow-md rounded-lg transition-colors duration-200">
