@@ -1,13 +1,11 @@
 "use client";
 
-import RightToLeftIntro from "@/components/Common/Intros/right-to-left";
 import WidthClamp from "@/components/Layout/Clamp";
 import FAQComponent from "./faq";
 
 const AboutContent = () => {
   return (
     <>
-      <RightToLeftIntro />
       <header>
         <WidthClamp>
           <div className="min-h-[35rem] flex items-center">

@@ -26,8 +26,8 @@ const RootLayout: React.FC<RootLayoutProps> = (props) => {
       <body className={`${satoshi.className} dark:bg-background-950 dark:text-text-50`}>
         <Providers>
           <Navbar />
-          {props.modal}
           {props.children}
+          {props.modal}
           <Footer />
         </Providers>
 

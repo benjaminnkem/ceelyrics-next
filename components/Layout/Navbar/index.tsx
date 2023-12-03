@@ -1,13 +1,11 @@
 "use client";
 import Link from "next/link";
 import { create } from "zustand";
-import WidthClamp from "../Clamp";
 import { openSans } from "@/lib/fonts";
 import { HomeIcon, MenuIcon, SearchIcon, User2Icon, XIcon } from "lucide-react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { usePathname } from "next/navigation";
-import { useSession } from "next-auth/react";
 
 interface NavLink {
   label: string;
@@ -25,6 +23,7 @@ export const useNavbarStore = create<NavStore>(() => ({
     { label: "Home", path: "/" },
     { label: "About", path: "/about" },
     { label: "Contact Us", path: "/contact" },
+    { label: "Artists", path: "/artists" },
     { label: "", path: "/search", icon: <SearchIcon className="text-text-600 dark:text-text-300" size={16} /> },
     {
       label: "",
@@ -49,7 +48,7 @@ const Navbar = () => {
 
       tl.fromTo(".navContainer", { yPercent: -100, opacity: 0 }, { yPercent: 0, opacity: 100, ease: "power4.inOut" })
         .fromTo("#logo", { xPercent: -100, opacity: 0 }, { xPercent: 0, opacity: 100 }, 0)
-        .fromTo(".navLink", { xPercent: 20, opacity: 0 }, { xPercent: 0, opacity: 100, stagger: { each: 0.1 } });
+        .fromTo(".navLink", { xPercent: 20, opacity: 0 }, { xPercent: 0, opacity: 100, stagger: { amount: 0.4 } });
 
       return () => cxt.revert();
     }, navbarRef);
@@ -82,7 +81,7 @@ const Navbar = () => {
     } else {
       return (
         <Link href={link.path} className="duration-200 hover:animate-pulse">
-          {link.label} {link.icon && link.icon}
+          {link.label} {link.icon ?? link.icon}
         </Link>
       );
     }
@@ -120,6 +119,7 @@ const Navbar = () => {
         </div>
       </nav>
 
+      {/* mobile sidebar */}
       <aside
         className={`z-[2000] text-white overflow-auto fixed right-0 flex items-center justify-center top-0 bg-black min-h-screen sm:hidden ${
           mobileNavOpen ? "w-full opacity-100 bg-opacity-80" : "w-0 opacity-0"
@@ -132,16 +132,19 @@ const Navbar = () => {
         />
 
         <div className="flex flex-col gap-4 text-center">
-          {links.slice(0, links.length - 1).map((link, index) => (
-            <Link
-              href={link.path}
-              key={index}
-              className="text-xl duration-200 hover:border-white/90 border-2 px-6 py-2 rounded-2xl border-transparent font-semibold"
-              onClick={toggleMobileNav}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {links
+            .filter((item) => item.path !== "/search")
+            .slice(0, links.length - 2)
+            .map((link, index) => (
+              <Link
+                href={link.path}
+                key={index}
+                className="text-xl duration-200 hover:border-white/90 border-2 px-6 py-2 rounded-2xl border-transparent font-semibold"
+                onClick={toggleMobileNav}
+              >
+                {link.label}
+              </Link>
+            ))}
           <Link href={"/account/register"}>
             <button className="text-xl text-text-50 hover:border-primary-700 px-4 py-2 rounded-3xl border border-transparent font-semibold transition-colors duration-200">
               Account

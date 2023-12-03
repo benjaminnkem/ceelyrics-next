@@ -29,7 +29,6 @@ const ContactContent = () => {
 
   return (
     <>
-      <RightToLeftIntro />
       <header ref={headerRef}>
         <div className="min-h-[40rem] overflow-hidden relative">
           <div className="-z-[10] select-none absolute top-0 left-0 w-full h-full">
