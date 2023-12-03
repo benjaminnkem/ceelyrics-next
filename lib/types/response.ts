@@ -8,6 +8,7 @@ export interface ArtistData {
   profileImage: string;
   coverImage: string;
   dateOfBirth: string;
+  wikipediaLink: string;
   createdAt: string;
   updatedAt: string;
   albums: [];

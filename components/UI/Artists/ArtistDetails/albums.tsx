@@ -8,7 +8,8 @@ import { ProgressBar } from "react-loader-spinner";
 import { gsap } from "gsap";
 import toast from "react-hot-toast";
 import { determineAlbumType } from "@/lib/helpers";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
+import Link from "next/link";
 
 interface Props {
   artistId: string;
@@ -53,7 +54,7 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
         .set(".__albums_container", {
           display: "none",
         })
-        .set(".__album_songs", { yPercent: -10, opacity: 0, display: "block" })
+        .set(".__album_songs", { display: "block", yPercent: -10, opacity: 0 })
         .to(".__album_songs", { opacity: 1, ease: "power4", yPercent: 0 });
     }, ref);
 
@@ -72,7 +73,7 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
   const revertAnimation = () => {
     gsap.context(() => {
       const tl = gsap.timeline();
-      tl.to(".__album_songs", { yPercent: -10, opacity: 0 })
+      tl.to(".__album_d_child", { opacity: 0, yPercent: -10, ease: "power4.out", stagger: { amount: 0.5 } })
         .set(".__album_songs", { display: "none" })
         .set(".__albums_container", {
           display: "grid",
@@ -92,20 +93,35 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
         <div className="self-start">
           <p className="font-extrabold text-3xl mb-1">Details</p>
 
-          <div className="w-fit bg-background-100 p-4 rounded-lg space-y-3">
-            <p>
-              <span className="font-semibold">Stage Name:</span> {artist.stageName}
-            </p>
-            <p>
-              <span className="font-semibold">Full Name</span>: {artist.firstName} {artist.middleName} {artist.lastName}
-            </p>
-            <p>
-              <span className="font-semibold">Date Of Birth:</span>{" "}
-              {new Intl.DateTimeFormat("en-GB").format(new Date(artist.dateOfBirth as string))}
-            </p>
+          <div className="w-fit bg-background-100 dark:bg-background-900 p-4 rounded-lg space-y-3">
             <div>
-              <p className="font-semibold">About Artist:</p>
-              <p className="whitespace-pre-line">{artist.bio}</p>
+              <p className="font-bold text-lg">Stage Name</p> <p className="text-text-200">{artist.stageName}</p>
+            </div>
+            <div>
+              <p className="font-bold text-lg">Full Name</p>
+              <p className="text-text-200">
+                {artist.firstName} {artist.middleName} {artist.lastName}
+              </p>
+            </div>
+            <div>
+              <p className="font-bold text-lg">Date Of Birth</p>
+              <p className="text-text-200">
+                {new Intl.DateTimeFormat("en-GB").format(new Date(artist.dateOfBirth as string))}
+              </p>
+            </div>
+            <div>
+              <p className="font-bold text-lg">About Artist</p>
+              <p className="whitespace-pre-line text-text-200">{artist.bio}</p>
+            </div>
+            <div className="">
+              {artist.wikipediaLink && (
+                <Link href={"/"} target="_blank">
+                  <button className="flex font-bold items-center gap-1">
+                    <ExternalLink size={16} />
+                    <span>On Wikipedia</span>
+                  </button>
+                </Link>
+              )}
             </div>
           </div>
         </div>
@@ -124,7 +140,7 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
                     {albums.map((album, id) => (
                       <div
                         key={id}
-                        className="bg-white relative min-h-[7rem] cursor-pointer group rounded-lg overflow-hidden border border-zinc-100"
+                        className="bg-white relative min-h-[7rem] cursor-pointer group rounded-lg overflow-hidden border border-zinc-100 dark:border-background-600"
                         onClick={() => playAnimation(album)}
                       >
                         <div className="absolute top-0 left-0 w-full overflow-hidden h-full select-none">
@@ -169,19 +185,28 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
               {albumInfo ? (
                 <div className="flex gap-4">
                   <div className="max-w-xl">
-                    <div className="w-64 h-64 rounded-xl bg-background-100"></div>
-                    <div className="space-y-4">
-                      <div>
+                    <div className="w-64 h-64 __album_d_child rounded-xl bg-background-100 dark:bg-background-900 overflow-hidden">
+                      <Image
+                        src={`/images/backgrounds/home/music${1}.jpg`}
+                        alt={`${albumInfo.title} album cover`}
+                        width={1920}
+                        height={800}
+                        className="w-full h-full object-cover group-hover:scale-105 duration-200"
+                        draggable={false}
+                      />
+                    </div>
+                    <div className="space-y-4 mt-2">
+                      <div className="__album_d_child">
                         <p className="text-3xl font-bold">{albumInfo.title}</p>
                         <p className="font-medium">{albumInfo.releaseDate}</p>
                       </div>
-                      <div>
+                      <div className="__album_d_child">
                         <p className="whitespace-pre-line">{albumInfo.description}</p>
                       </div>
                     </div>
 
                     <div
-                      className="flex items-center text-primary-500 cursor-pointer mt-6 gap-2 font-semibold text-sm"
+                      className="flex items-center __album_d_child text-primary-500 cursor-pointer mt-6 gap-2 font-semibold text-sm"
                       onClick={revertAnimation}
                     >
                       <ArrowLeft size={16} /> <span>Go Back</span>
