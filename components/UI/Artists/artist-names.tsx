@@ -8,9 +8,11 @@ import classNames from "classnames";
 import Link from "next/link";
 
 const ArtistGrid: React.FC<{ artistsResult: ArtistResponse[] | undefined }> = ({ artistsResult }) => {
+  console.log(artistsResult);
+
   const artistsRef = useRef<HTMLDivElement>(null);
   const [selectedLetter, setSelectedLetter] = useState<string>("a");
-  const [artists, setArtists] = useState(artistsResult?.filter((artist) => artist.stageName[0] === "a"));
+  const [artists, setArtists] = useState(artistsResult?.filter((artist) => artist.stageName[0].toLowerCase() === "a"));
 
   useLayoutEffect(() => {
     const cxt = gsap.context(() => {
@@ -22,7 +24,9 @@ const ArtistGrid: React.FC<{ artistsResult: ArtistResponse[] | undefined }> = ({
   const filterArtists = (letter: string) => {
     setSelectedLetter(letter);
 
-    const filteredArtists = artistsResult?.filter((artist) => artist.stageName[0] === letter);
+    const filteredArtists = artistsResult?.filter(
+      (artist) => artist.stageName[0].toLowerCase() === letter.toLocaleLowerCase()
+    );
     setArtists(filteredArtists);
     transitionNames();
   };
@@ -33,7 +37,7 @@ const ArtistGrid: React.FC<{ artistsResult: ArtistResponse[] | undefined }> = ({
         opacity: 0,
         yPercent: 10,
         ease: "power4",
-        stagger: { amount: 0.4 },
+        stagger: { amount: 0.3 },
       });
     }, artistsRef);
   };

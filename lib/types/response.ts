@@ -16,6 +16,14 @@ export interface ArtistData {
 
 export type AlbumType = "Album" | "EP" | "Single";
 
+export interface Lyrics {
+  id: string;
+  title: string;
+  lyrics: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface Album {
   id: string;
   title: string;
@@ -26,4 +34,5 @@ export interface Album {
   additionalQuote: string | null;
   createdAt: string;
   updatedAt: string;
+  lyrics: Lyrics[];
 }

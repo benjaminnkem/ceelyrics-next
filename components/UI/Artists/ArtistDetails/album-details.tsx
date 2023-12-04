@@ -62,6 +62,8 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
       setSelectedAlbum(album);
       setInfoLoading(true);
       const res = await publicApi.get<Album>(`/albums/${album.id}`);
+      console.log(res.data);
+
       setAlbumInfo(res.data);
     } catch {
       toast.error("Couldn't get album information");
@@ -73,7 +75,8 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
   const revertAnimation = () => {
     gsap.context(() => {
       const tl = gsap.timeline();
-      tl.to(".__album_d_child", { opacity: 0, yPercent: -10, ease: "power4.out", stagger: { amount: 0.5 } })
+      tl.to(".__album_d_child", { opacity: 0, yPercent: -10, ease: "power4.out", stagger: { amount: 0.3 } })
+        .to(".__lyrics_child", { opacity: 0, xPercent: 10, ease: "power4.out", stagger: { amount: 0.3 } }, 0)
         .set(".__album_songs", { display: "none" })
         .set(".__albums_container", {
           display: "grid",
@@ -154,7 +157,7 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
                           />
                         </div>
 
-                        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t p-4 from-background-950 to-transparent text-white">
+                        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t p-4 from-background-950 via-transparent to-background-900 text-white">
                           <p className="text-xl font-extrabold">{album.title}</p>
                         </div>
                       </div>
@@ -181,11 +184,11 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
           </div>
         ) : (
           <div>
-            <div className="container my-[4rem]">
+            <div className="container my-[4rem] px-40">
               {albumInfo ? (
-                <div className="flex gap-4">
+                <div className="flex gap-16">
                   <div className="max-w-xl">
-                    <div className="w-64 h-64 __album_d_child rounded-xl bg-background-100 dark:bg-background-900 overflow-hidden">
+                    <div className="w-full h-64 __album_d_child rounded-xl bg-background-100 dark:bg-background-900 overflow-hidden">
                       <Image
                         src={`/images/backgrounds/home/music${1}.jpg`}
                         alt={`${albumInfo.title} album cover`}
@@ -197,11 +200,13 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
                     </div>
                     <div className="space-y-4 mt-2">
                       <div className="__album_d_child">
-                        <p className="text-3xl font-bold">{albumInfo.title}</p>
-                        <p className="font-medium">{albumInfo.releaseDate}</p>
+                        <p className="text-3xl font-extrabold">
+                          {albumInfo.title} ({albumInfo.albumType})
+                        </p>
+                        <p className="font-medium text-text-400">{albumInfo.releaseDate}</p>
                       </div>
                       <div className="__album_d_child">
-                        <p className="whitespace-pre-line">{albumInfo.description}</p>
+                        <p className="whitespace-pre-line max-w-md">{albumInfo.description}</p>
                       </div>
                     </div>
 
@@ -213,7 +218,26 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
                     </div>
                   </div>
 
-                  <div></div>
+                  <div>
+                    {albumInfo.lyrics.length > 0 ? (
+                      <div>
+                        <p className="text-xl font-bold mb-2 __lyrics_child">Available Songs Lyrics</p>
+                        <div className="space-y-1">
+                          {albumInfo.lyrics.map((lyric, id) => (
+                            <div key={id} className="__lyrics_child">
+                              <Link href={`/lyrics/${lyric.id}`}>
+                                <div className="dark:bg-background-900 bg-white duration-200 dark:hover:bg-background-800 shadow-xl rounded-md p-2">
+                                  <p>{lyric.title}</p>
+                                </div>
+                              </Link>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <p className="__lyrics_child">No Available lyrics.</p>
+                    )}
+                  </div>
                 </div>
               ) : (
                 <p>No Info found</p>

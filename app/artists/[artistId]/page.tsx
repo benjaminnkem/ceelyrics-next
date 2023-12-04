@@ -1,4 +1,4 @@
-import ArtistAlbums from "@/components/UI/Artists/ArtistDetails/albums";
+import ArtistAlbums from "@/components/UI/Artists/ArtistDetails/album-details";
 import { publicApi } from "@/lib/configs/axiosInstance";
 import { ArtistData } from "@/lib/types/response";
 import Image from "next/image";
