@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import { determineAlbumType } from "@/lib/helpers";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import Link from "next/link";
+import axios from "axios";
 
 interface Props {
   artistId: string;
@@ -28,6 +29,7 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
     try {
       setLoading(true);
       const res = await publicApi.get<Album[]>(`/artists/albums/${artistId}`);
+
       setAlbums(res.data);
     } catch (e) {
       if (e instanceof Error) {
@@ -55,7 +57,8 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
           display: "none",
         })
         .set(".__album_songs", { display: "block", yPercent: -10, opacity: 0 })
-        .to(".__album_songs", { opacity: 1, ease: "power4", yPercent: 0 });
+        .to(".__album_songs", { opacity: 1, ease: "power4", yPercent: 0 })
+        .from(".__lyrics_child", { opacity: 0, stagger: { amount: 1 } });
     }, ref);
 
     try {
