@@ -108,7 +108,7 @@ const Navbar = () => {
               ))}
             </ul>
 
-            <div className="flex items-center gap-6 sm:hidden mr-4">
+            <div className="flex items-center md:gap-6 gap-2 sm:hidden mr-4">
               <Link href={"/"} className="duration-200 hover:animate-pulse">
                 <HomeIcon size={20} />
               </Link>

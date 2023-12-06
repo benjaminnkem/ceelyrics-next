@@ -5,7 +5,7 @@ import { openSans } from "@/lib/fonts";
 import { ArtistData } from "@/lib/types/response";
 import Image from "next/image";
 
-export type ArtistResponse = Pick<ArtistData, "stageName" | "id">;
+export type ArtistResponse = Pick<ArtistData, "stageName" | "id" | "slug">;
 
 const fetchArtists = async () => {
   try {

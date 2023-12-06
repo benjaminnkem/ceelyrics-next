@@ -3,6 +3,7 @@ export interface ArtistData {
   firstName: string;
   middleName: string;
   lastName: string;
+  slug: string;
   stageName: string;
   bio: string;
   profileImage: string;

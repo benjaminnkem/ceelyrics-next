@@ -8,8 +8,6 @@ import classNames from "classnames";
 import Link from "next/link";
 
 const ArtistGrid: React.FC<{ artistsResult: ArtistResponse[] | undefined }> = ({ artistsResult }) => {
-  console.log(artistsResult);
-
   const artistsRef = useRef<HTMLDivElement>(null);
   const [selectedLetter, setSelectedLetter] = useState<string>("a");
   const [artists, setArtists] = useState(artistsResult?.filter((artist) => artist.stageName[0].toLowerCase() === "a"));
@@ -69,9 +67,9 @@ const ArtistGrid: React.FC<{ artistsResult: ArtistResponse[] | undefined }> = ({
         </h2>
         {selectedLetter && (
           <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-4">
-            {artists?.map((artist, id) => (
-              <div key={id} className="__artist_letter_">
-                <Link href={`/artists/${artist.id}`}>
+            {artists?.map((artist) => (
+              <div key={artist.id} className="__artist_letter_">
+                <Link href={`/artists/${artist.slug}`}>
                   <div className="rounded-xl font-semibold cursor-pointer duration-300 hover:shadow-2xl flex items-center justify-center shadow py-4 bg-white dark:bg-background-900">
                     <span>{artist.stageName}</span>
                   </div>

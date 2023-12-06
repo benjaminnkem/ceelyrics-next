@@ -61,9 +61,13 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
         .from(".__lyrics_child", { opacity: 0, stagger: { amount: 1 } });
     }, ref);
 
+    // fetch album details
     try {
       setSelectedAlbum(album);
       setInfoLoading(true);
+
+      console.log(album);
+
       const res = await publicApi.get<Album>(`/albums/${album.id}`);
       console.log(res.data);
 
@@ -95,29 +99,30 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
 
   return (
     <div ref={ref}>
-      <div className="md:grid flex flex-col-reverse grid-cols-2 mt-10 gap-8 container __albums_container">
+      <div className="md:grid flex flex-col-reverse md:grid-cols-2 mt-[10rem] gap-8 container __albums_container md:mt-10">
         <div className="self-start">
           <p className="font-extrabold text-3xl mb-1">Details</p>
 
           <div className="w-fit bg-background-100 dark:bg-background-900 p-4 rounded-lg space-y-3">
             <div>
-              <p className="font-bold text-lg">Stage Name</p> <p className="text-text-200">{artist.stageName}</p>
+              <p className="font-bold text-lg">Stage Name</p>{" "}
+              <p className="dark:text-text-200 text-text-700">{artist.stageName}</p>
             </div>
             <div>
               <p className="font-bold text-lg">Full Name</p>
-              <p className="text-text-200">
+              <p className="dark:text-text-200 text-text-700">
                 {artist.firstName} {artist.middleName} {artist.lastName}
               </p>
             </div>
             <div>
               <p className="font-bold text-lg">Date Of Birth</p>
-              <p className="text-text-200">
+              <p className="dark:text-text-200 text-text-700">
                 {new Intl.DateTimeFormat("en-GB").format(new Date(artist.dateOfBirth as string))}
               </p>
             </div>
             <div>
               <p className="font-bold text-lg">About Artist</p>
-              <p className="whitespace-pre-line text-text-200">{artist.bio}</p>
+              <p className="whitespace-pre-line dark:text-text-200 text-text-700">{artist.bio}</p>
             </div>
             <div className="">
               {artist.wikipediaLink && (
@@ -142,7 +147,7 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
               {albums && albums.length > 0 ? (
                 <div>
                   <p className="font-extrabold text-3xl mb-1">Albums/EPs&lsquo;</p>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid md:grid-cols-2 gap-3">
                     {albums.map((album, id) => (
                       <div
                         key={id}
@@ -187,9 +192,9 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
           </div>
         ) : (
           <div>
-            <div className="container my-[4rem] px-40">
+            <div className="container my-[6rem] ">
               {albumInfo ? (
-                <div className="flex gap-16">
+                <div className="md:grid grid-cols-2 flex flex-col lg:gap-24 gap-10">
                   <div className="max-w-xl">
                     <div className="w-full h-64 __album_d_child rounded-xl bg-background-100 dark:bg-background-900 overflow-hidden">
                       <Image
@@ -225,11 +230,11 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
                     {albumInfo.lyrics.length > 0 ? (
                       <div>
                         <p className="text-xl font-bold mb-2 __lyrics_child">Available Songs Lyrics</p>
-                        <div className="space-y-1">
+                        <div className="space-y-2">
                           {albumInfo.lyrics.map((lyric, id) => (
                             <div key={id} className="__lyrics_child">
                               <Link href={`/lyrics/${lyric.id}`}>
-                                <div className="dark:bg-background-900 bg-white duration-200 dark:hover:bg-background-800 shadow-xl rounded-md p-2">
+                                <div className="dark:bg-background-900 bg-white duration-200 dark:hover:bg-background-800 shadow-xl rounded-md py-2 px-4">
                                   <p>{lyric.title}</p>
                                 </div>
                               </Link>

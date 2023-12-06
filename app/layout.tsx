@@ -5,8 +5,6 @@ import Providers from "@/lib/utils/providers";
 import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import { ReactNode } from "react";
-import KofiSupport from "@/components/Common/Kofi";
-import dynamic from "next/dynamic";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ceelyrics.com"),

@@ -57,12 +57,14 @@ const ArtistDetails: React.FC<Params> = async ({ params: { artistId } }) => {
                   />
                 </div>
 
-                <div className="text-center mt-2">
-                  <h1 className="font-bold text-xl">{artist?.stageName}</h1>
-                  <p>
-                    ({artist?.firstName} {artist?.middleName} {artist?.lastName})
-                  </p>
-                </div>
+                {artist && (
+                  <div className="text-center mt-2">
+                    <h1 className="font-bold text-xl">{artist?.stageName}</h1>
+                    <p>
+                      ({artist?.firstName} {artist?.middleName} {artist?.lastName})
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -74,7 +76,7 @@ const ArtistDetails: React.FC<Params> = async ({ params: { artistId } }) => {
         {artist ? (
           <ArtistAlbums artistId={artistId} artist={artist} />
         ) : (
-          <div className="container">
+          <div className="container mt-[4rem]">
             <p className="text-2xl font-extrabold">No artist data</p>
           </div>
         )}
