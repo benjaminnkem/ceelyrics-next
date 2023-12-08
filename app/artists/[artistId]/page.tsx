@@ -1,6 +1,6 @@
 import ArtistAlbums from "@/components/UI/Artists/ArtistDetails/album-details";
 import { publicApi } from "@/lib/configs/axiosInstance";
-import { ArtistData } from "@/lib/types/response";
+import { Artist } from "@/lib/types/response";
 import Image from "next/image";
 
 interface Params {
@@ -9,7 +9,7 @@ interface Params {
 
 const fetchArtistDetails = async (artistId: string) => {
   try {
-    const response = await publicApi.get<Omit<ArtistData, "albums">>(`/artists/details/${artistId}`);
+    const response = await publicApi.get<Omit<Artist, "albums">>(`/artists/details/${artistId}`);
     return response.data;
   } catch (e) {
     console.log(e);
@@ -59,9 +59,9 @@ const ArtistDetails: React.FC<Params> = async ({ params: { artistId } }) => {
 
                 {artist && (
                   <div className="text-center mt-2">
-                    <h1 className="font-bold text-xl">{artist?.stageName}</h1>
+                    <h1 className="font-bold text-xl">{artist.stageName}</h1>
                     <p>
-                      ({artist?.firstName} {artist?.middleName} {artist?.lastName})
+                      ({artist.firstName} {artist.middleName} {artist.lastName})
                     </p>
                   </div>
                 )}

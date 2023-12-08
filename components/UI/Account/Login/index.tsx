@@ -5,7 +5,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import RightToLeftIntro from "@/components/Common/Intros/right-to-left";
 import { SubmitHandler, useForm } from "react-hook-form";
-import FormLoader from "@/components/Common/Loaders/form-loader";
+import VortexLoader from "@/components/Common/Loaders/form-loader";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -47,7 +47,7 @@ const LoginForm = () => {
 
   return (
     <>
-      {loading && <FormLoader />}
+      {loading && <VortexLoader />}
 
       <div className="bg-white dark:bg-background-900 overflow-x-hidden overflow-y-auto h-screen flex items-center justify-center">
         <RightToLeftIntro />

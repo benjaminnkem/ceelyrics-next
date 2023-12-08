@@ -1,7 +1,7 @@
 "use client";
 
 import { publicApi } from "@/lib/configs/axiosInstance";
-import { Album, ArtistData } from "@/lib/types/response";
+import { Album, Artist } from "@/lib/types/response";
 import Image from "next/image";
 import { FC, useEffect, useRef, useState } from "react";
 import { ProgressBar } from "react-loader-spinner";
@@ -14,7 +14,7 @@ import axios from "axios";
 
 interface Props {
   artistId: string;
-  artist: Omit<ArtistData, "albums">;
+  artist: Omit<Artist, "albums">;
 }
 
 const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
@@ -194,7 +194,7 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
           <div>
             <div className="container my-[6rem] ">
               {albumInfo ? (
-                <div className="md:grid grid-cols-2 flex flex-col lg:gap-24 gap-10">
+                <div className="md:grid grid-cols-2 flex flex-col lg:gap-40 md:gap-24 gap-10">
                   <div className="max-w-xl">
                     <div className="w-full h-64 __album_d_child rounded-xl bg-background-100 dark:bg-background-900 overflow-hidden">
                       <Image
@@ -233,7 +233,7 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
                         <div className="space-y-2">
                           {albumInfo.lyrics.map((lyric, id) => (
                             <div key={id} className="__lyrics_child">
-                              <Link href={`/lyrics/${lyric.id}`}>
+                              <Link href={`/lyrics/${lyric.slug}`}>
                                 <div className="dark:bg-background-900 bg-white duration-200 dark:hover:bg-background-800 shadow-xl rounded-md py-2 px-4">
                                   <p>{lyric.title}</p>
                                 </div>

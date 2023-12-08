@@ -9,7 +9,7 @@ import { BASE_API_URL } from "@/lib/constants/variables";
 import toast from "react-hot-toast";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import FormLoader from "@/components/Common/Loaders/form-loader";
+import VortexLoader from "@/components/Common/Loaders/form-loader";
 import axios from "axios";
 import { Values } from "@/lib/types/account";
 
@@ -56,7 +56,7 @@ const RegisterForm = () => {
 
   return (
     <>
-      {loading && <FormLoader />}
+      {loading && <VortexLoader />}
 
       <div className="dark:bg-background-950 overflow-x-hidden overflow-y-auto">
         <RightToLeftIntro />

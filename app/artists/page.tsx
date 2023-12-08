@@ -1,18 +1,19 @@
 import ArtistGrid from "@/components/UI/Artists/artist-names";
 import HeroSearch from "@/components/UI/Home/hero-search";
-import { publicApi } from "@/lib/configs/axiosInstance";
+import { BASE_API_URL } from "@/lib/constants/variables";
 import { openSans } from "@/lib/fonts";
-import { ArtistData } from "@/lib/types/response";
+import { Artist } from "@/lib/types/response";
 import Image from "next/image";
 
-export type ArtistResponse = Pick<ArtistData, "stageName" | "id" | "slug">;
+export type ArtistResponse = Pick<Artist, "stageName" | "id" | "slug">;
 
-const fetchArtists = async () => {
+const fetchArtists = async (): Promise<ArtistResponse[]> => {
   try {
-    const res = await publicApi.get<ArtistResponse[]>("/artists/all");
-    return res.data;
+    const res = await fetch(`${BASE_API_URL}/artists/all`, { next: { revalidate: 60 } });
+    return await res.json();
   } catch (e) {
     console.log(e);
+    return [];
   }
 };
 

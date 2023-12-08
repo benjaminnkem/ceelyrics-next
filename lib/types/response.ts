@@ -1,4 +1,4 @@
-export interface ArtistData {
+export interface Artist {
   id: string;
   firstName: string;
   middleName: string;
@@ -23,6 +23,7 @@ export interface Lyrics {
   lyrics: string;
   createdAt: string;
   updatedAt: string;
+  slug: string;
 }
 
 export interface Album {
@@ -35,5 +36,6 @@ export interface Album {
   additionalQuote: string | null;
   createdAt: string;
   updatedAt: string;
+  artist: Omit<Artist, "albums">;
   lyrics: Lyrics[];
 }
