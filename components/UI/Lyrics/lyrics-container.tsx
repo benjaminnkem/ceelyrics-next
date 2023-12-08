@@ -14,7 +14,7 @@ const LyricsContainer: FC<{ album: Album }> = ({ album }) => {
               key={lyric.id}
               className="text-text-800 self-start dark:text-text-200 duration-200 hover:bg-background-800 rounded-md p-[2px] hover:text-text-700 dark:hover:text-text-300"
             >
-              <Link href={`/lyrics/`}>
+              <Link href={`/lyrics/${lyric.slug}`}>
                 <p>Some random text {Math.ceil(Math.random() * 1000)}</p>
               </Link>
             </div>
@@ -29,8 +29,8 @@ const LyricsContainer: FC<{ album: Album }> = ({ album }) => {
               key={lyric.id}
               className="text-text-800 self-start dark:text-text-200 duration-200 hover:bg-background-800 rounded-md p-[2px] hover:text-text-700 dark:hover:text-text-300"
             >
-              <Link href={`/lyrics/`}>
-                <p>Some random text {Math.ceil(Math.random() * 1000)}</p>
+              <Link href={`/lyrics/${lyric.slug}`}>
+                <p>{lyric.title}</p>
               </Link>
             </div>
           ))}

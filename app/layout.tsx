@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import { satoshi } from "@/lib/fonts";
 import Providers from "@/lib/utils/providers";
 import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import { ReactNode } from "react";
+import "../public/globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ceelyrics.com"),
   applicationName: "Ceelyrics",
   title: "Ceelyrics - Discover the Music in Lyrics",
-  description: "Ceelyrics is a next generation lyrics provider with downloadable musics.",
+  description:
+    "Ceelyrics redefines the lyrics experience with a cutting-edge platform, offering downloadable music alongside lyrical brilliance. Elevate your music journey with us.",
 };
 
 interface RootLayoutProps {

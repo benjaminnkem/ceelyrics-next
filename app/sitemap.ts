@@ -4,9 +4,9 @@ import { Artist } from "@/lib/types/response";
 import { MetadataRoute } from "next";
 
 export default async function sitemap() {
-  const artistsData = (await publicApi.get<Pick<Artist, "stageName">[]>("/artists/sitemap/all")).data;
+  const artistsData = (await publicApi.get<Pick<Artist, "slug">[]>("/artists/sitemap/all")).data;
   const siteArtists: MetadataRoute.Sitemap = artistsData.map((artist) => ({
-    url: `${SITE_URL}/artists/${encodeURIComponent(artist.stageName)}`,
+    url: `${SITE_URL}/artists/${encodeURIComponent(artist.slug)}`,
     lastModified: new Date(),
     priority: 0.8,
   }));
