@@ -36,7 +36,7 @@ const Footer = () => {
   return (
     <footer>
       <div className="container">
-        <div className="rounded-lg py-10 px-16 bg-background-100 dark:bg-background-900 dark:text-text-50 mb-10 mt-4">
+        <div className="rounded-lg md:py-10 py-5 md:px-16 px-8 bg-background-100 dark:bg-background-900 dark:text-text-50 mb-10 mt-4">
           <div className="md:space-y-6 space-y-4">
             <div className="md:mb-6 mb-4">
               <Link href={"/"} className={`${openSans.className} font-extrabold text-xl`}>

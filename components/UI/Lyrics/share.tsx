@@ -7,8 +7,9 @@ import { usePathname } from "next/navigation";
 import toast from "react-hot-toast";
 import { gsap } from "gsap";
 import { useRef } from "react";
+import { Lyrics } from "@/lib/types/response";
 
-const ShareLyrics = () => {
+const ShareLyrics: React.FC<{ lyrics: Lyrics }> = ({ lyrics }) => {
   const pathname = usePathname();
   const ref = useRef<HTMLDivElement>(null);
 
@@ -34,6 +35,12 @@ const ShareLyrics = () => {
     toast.success("Link copied", { id: "success" });
   };
 
+  const whatsappMsg = encodeURI(
+    `Hi, Checkout this out!
+*${lyrics.artist.stageName} - ${lyrics.title}* (Lyrics)
+${SITE_URL}${pathname}`.trim()
+  );
+
   return (
     <div ref={ref}>
       <p className="text-center text-sm font-semibold">Share this lyrics</p>
@@ -45,11 +52,11 @@ const ShareLyrics = () => {
           </Link>
         </div>
         <div className="rounded-lg p-[2px]">
-          <Link href={"#"}>
+          <Link href={`whatsapp://send?text=${whatsappMsg}`}>
             <Image src={"/images/social/whatsapp.svg"} alt="whatsapp logo" width={30} height={30} />
           </Link>
         </div>
-        <div className="rounded-lg p-[2px] dark:bg-background-500">
+        <div className="rounded-lg dark:bg-background-500">
           <Link href={"#"}>
             <Image src={"/images/social/twitter-x.svg"} alt="twitter logo" width={30} height={30} />
           </Link>

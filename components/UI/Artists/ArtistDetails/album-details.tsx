@@ -10,7 +10,6 @@ import toast from "react-hot-toast";
 import { determineAlbumType } from "@/lib/helpers";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import Link from "next/link";
-import axios from "axios";
 
 interface Props {
   artistId: string;
@@ -24,6 +23,8 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
   const [infoLoading, setInfoLoading] = useState(false);
   const [_, setSelectedAlbum] = useState<Album>();
   const [albumInfo, setAlbumInfo] = useState<Album>();
+
+  const [windowSize, setWindowSize] = useState(0);
 
   const fetchAlbums = async () => {
     try {
@@ -42,6 +43,14 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
 
   useEffect(() => {
     fetchAlbums();
+  }, []);
+
+  useEffect(() => {
+    setWindowSize(window.innerWidth);
+
+    window.addEventListener("resize", () => setWindowSize(window.innerWidth));
+
+    return () => window.removeEventListener("resize", () => {});
   }, []);
 
   const ref = useRef<HTMLDivElement | null>(null);
@@ -66,11 +75,7 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
       setSelectedAlbum(album);
       setInfoLoading(true);
 
-      console.log(album);
-
       const res = await publicApi.get<Album>(`/albums/${album.id}`);
-      console.log(res.data);
-
       setAlbumInfo(res.data);
     } catch {
       toast.error("Couldn't get album information");
@@ -83,13 +88,15 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
     gsap.context(() => {
       const tl = gsap.timeline();
       tl.to(".__album_d_child", { opacity: 0, yPercent: -10, ease: "power4.out", stagger: { amount: 0.3 } })
-        .to(".__lyrics_child", { opacity: 0, xPercent: 10, ease: "power4.out", stagger: { amount: 0.3 } }, 0)
+        .to(
+          ".__lyrics_child",
+          windowSize < 768
+            ? { opacity: 0, ease: "power4.out", stagger: { amount: 0.3 } }
+            : { opacity: 0, xPercent: 10, ease: "power4.out", stagger: { amount: 0.3 } },
+          0
+        )
         .set(".__album_songs", { display: "none" })
-        .set(".__albums_container", {
-          display: "grid",
-          yPercent: -10,
-          opacity: 0,
-        })
+        .set(".__albums_container", { display: "grid", yPercent: -10, opacity: 0 })
         .to(".__albums_container", {
           opacity: 1,
           yPercent: 0,
@@ -99,9 +106,9 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
 
   return (
     <div ref={ref}>
-      <div className="md:grid flex flex-col-reverse md:grid-cols-2 mt-[10rem] gap-8 container __albums_container md:mt-10">
+      <div className="md:grid flex flex-col-reverse md:grid-cols-2 mt-[8rem] gap-8 container __albums_container md:mt-10">
         <div className="self-start">
-          <p className="font-extrabold text-3xl mb-1">Details</p>
+          <p className="font-extrabold md:text-3xl text-2xl mb-1">Details</p>
 
           <div className="w-fit bg-background-100 dark:bg-background-900 p-4 rounded-lg space-y-3">
             <div>
@@ -146,8 +153,8 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
             <div>
               {albums && albums.length > 0 ? (
                 <div>
-                  <p className="font-extrabold text-3xl mb-1">Albums/EPs&lsquo;</p>
-                  <div className="grid md:grid-cols-2 gap-3">
+                  <p className="font-extrabold md:text-3xl text-2xl mb-1">Albums/EPs&lsquo;</p>
+                  <div className="grid sm:grid-cols-2 gap-3">
                     {albums.map((album, id) => (
                       <div
                         key={id}
@@ -179,7 +186,7 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
           )}
         </div>
 
-        <div className="h-[5rem]"></div>
+        <div className="md:h-[5rem]"></div>
       </div>
 
       <div className="__album_songs hidden">
@@ -192,11 +199,11 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
           </div>
         ) : (
           <div>
-            <div className="container my-[6rem] ">
+            <div className="container mt-[10rem] mb-[6rem]">
               {albumInfo ? (
                 <div className="md:grid grid-cols-2 flex flex-col lg:gap-40 md:gap-24 gap-10">
                   <div className="max-w-xl">
-                    <div className="w-full h-64 __album_d_child rounded-xl bg-background-100 dark:bg-background-900 overflow-hidden">
+                    <div className="w-full md:h-64 h-52 __album_d_child rounded-xl bg-background-100 dark:bg-background-900 overflow-hidden">
                       <Image
                         src={`/images/backgrounds/home/music${1}.jpg`}
                         alt={`${albumInfo.title} album cover`}
@@ -208,7 +215,7 @@ const ArtistAlbums: FC<Props> = ({ artistId, artist }) => {
                     </div>
                     <div className="space-y-4 mt-2">
                       <div className="__album_d_child">
-                        <p className="text-3xl font-extrabold">
+                        <p className="md:text-3xl text-2xl font-extrabold">
                           {albumInfo.title} ({albumInfo.albumType})
                         </p>
                         <p className="font-medium text-text-400">{albumInfo.releaseDate}</p>

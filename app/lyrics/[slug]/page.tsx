@@ -61,7 +61,7 @@ const LyricsDetails: FC<Props> = async ({ params: { slug } }) => {
               <div className="space-y-2">
                 <div className="w-1/2 h-[1px] dark:bg-background-800 bg-background-400 mx-auto"></div>
 
-                <ShareLyrics />
+                <ShareLyrics lyrics={lyricsData} />
               </div>
             </div>
           </div>
