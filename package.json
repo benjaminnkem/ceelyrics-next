@@ -15,8 +15,6 @@
     "axios": "^1.6.1",
     "child_process": "^1.0.2",
     "classnames": "^2.3.2",
-    "drizzle-orm": "^0.28.6",
-    "fluent-ffmpeg": "^2.1.2",
     "gsap": "^3.12.2",
     "lucide-react": "^0.292.0",
     "mysql2": "^3.6.3",

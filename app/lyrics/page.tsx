@@ -1,5 +1,5 @@
 import LyricsContainer from "@/components/UI/Lyrics/lyrics-container";
-import { BASE_API_URL } from "@/lib/constants/variables";
+import { BASE_API_URL } from "@/lib/constants";
 import { Album } from "@/lib/types/response";
 import Image from "next/image";
 import Link from "next/link";

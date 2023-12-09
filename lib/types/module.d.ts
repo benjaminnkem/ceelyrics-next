@@ -5,5 +5,6 @@ declare namespace NodeJS {
     NEXTAUTH_SECRET: string;
     NEXT_PUBLIC_MM_API_URL: string;
     NEXT_PUBLIC_MM_API_KEY: string;
+    NEXT_PUBLIC_SITE_URL: string;
   }
 }

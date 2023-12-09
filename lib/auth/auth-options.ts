@@ -1,4 +1,4 @@
-import { BASE_API_URL } from "@/lib/constants/variables";
+import { BASE_API_URL } from "@/lib/constants";
 import axios from "axios";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";

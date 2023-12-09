@@ -1,6 +1,6 @@
 import ArtistGrid from "@/components/UI/Artists/artist-names";
 import HeroSearch from "@/components/UI/Home/hero-search";
-import { BASE_API_URL } from "@/lib/constants/variables";
+import { BASE_API_URL } from "@/lib/constants";
 import { openSans } from "@/lib/fonts";
 import { Artist } from "@/lib/types/response";
 import Image from "next/image";

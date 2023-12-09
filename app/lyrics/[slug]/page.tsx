@@ -1,6 +1,9 @@
+import ShareLyrics from "@/components/UI/Lyrics/share";
 import { publicApi } from "@/lib/configs/axiosInstance";
 import { Lyrics } from "@/lib/types/response";
 import { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FC } from "react";
 
@@ -44,8 +47,26 @@ const LyricsDetails: FC<Props> = async ({ params: { slug } }) => {
 
   return (
     <>
-      <header></header>
-      <main></main>
+      <header className="min-h-[20rem] bg-primary-800 text-white flex items-center justify-center text-center">
+        <div>
+          <h1 className="text-4xl font-extrabold">{lyricsData.title} Lyrics</h1>
+        </div>
+      </header>
+      <main>
+        <div className="container my-[4rem]">
+          <div className="text-center">
+            <div className="space-y-8">
+              <div className="whitespace-pre-line rounded-lg">{lyricsData.lyrics}</div>
+
+              <div className="space-y-2">
+                <div className="w-1/2 h-[1px] dark:bg-background-800 bg-background-400 mx-auto"></div>
+
+                <ShareLyrics />
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
     </>
   );
 };

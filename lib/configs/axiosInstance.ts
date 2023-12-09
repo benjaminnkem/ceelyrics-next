@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_API_URL, MM_URL } from "../constants/variables";
+import { BASE_API_URL, MM_URL } from "../constants";
 
 export const musixApi = axios.create({
   baseURL: MM_URL,

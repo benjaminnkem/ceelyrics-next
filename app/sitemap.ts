@@ -1,5 +1,5 @@
 import { publicApi } from "@/lib/configs/axiosInstance";
-import { SITE_URL } from "@/lib/constants/variables";
+import { SITE_URL } from "@/lib/constants";
 import { Artist } from "@/lib/types/response";
 import { MetadataRoute } from "next";
 

@@ -5,7 +5,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import RightToLeftIntro from "@/components/Common/Intros/right-to-left";
 import { useState } from "react";
-import { BASE_API_URL } from "@/lib/constants/variables";
+import { BASE_API_URL } from "@/lib/constants";
 import toast from "react-hot-toast";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
