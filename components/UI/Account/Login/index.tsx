@@ -3,10 +3,9 @@
 import "remixicon/fonts/remixicon.css";
 import classNames from "classnames";
 import Link from "next/link";
-import RightToLeftIntro from "@/components/Common/Intros/right-to-left";
 import { SubmitHandler, useForm } from "react-hook-form";
 import VortexLoader from "@/components/Common/Loaders/form-loader";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { signIn } from "next-auth/react";
@@ -23,17 +22,19 @@ const signUpBtnClass = classNames([
 
 const LoginForm = () => {
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   const { register, handleSubmit, reset } = useForm<Values>({ defaultValues: { email: "", password: "" } });
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<Values> = async (values) => {
     setLoading(true);
     try {
       reset();
-      await signIn("credentials", { ...values });
+      await signIn("credentials", { ...values, redirect: false });
       toast.success("Logged in successfully", { id: "success" });
-      router.push("/");
+      router.replace("/");
+
+      return;
     } catch {
       toast.error("Sorry, we couldn't sign you in", { id: "err" });
     } finally {
@@ -50,10 +51,9 @@ const LoginForm = () => {
       {loading && <VortexLoader />}
 
       <div className="bg-white dark:bg-background-900 overflow-x-hidden overflow-y-auto h-screen flex items-center justify-center">
-        <RightToLeftIntro />
         <div className="md:my-[1rem] w-fit p-6 rounded-2xl mx-auto bg-white dark:bg-background-900 shadow-xl relative">
           <div className="sm:min-w-[20rem] min-w-[80vw]">
-            <h1 className="font-bold md:text-3xl text-2xl mb-4">Login</h1>
+            <h1 className="font-bold md:text-2xl text-xl mb-4">Login</h1>
             <form onSubmit={handleSubmit(onSubmit)} noValidate>
               <div className="space-y-6">
                 <div className="space-y-1">

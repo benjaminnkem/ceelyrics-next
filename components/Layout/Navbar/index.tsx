@@ -6,6 +6,8 @@ import { HomeIcon, MenuIcon, SearchIcon, User2Icon, XIcon } from "lucide-react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { usePathname } from "next/navigation";
+import { useStore } from "@/lib/store";
+import { signOut } from "next-auth/react";
 
 interface NavLink {
   label: string;
@@ -25,15 +27,6 @@ export const useNavbarStore = create<NavStore>(() => ({
     { label: "Contact Us", path: "/contact" },
     { label: "Artists", path: "/artists" },
     { label: "", path: "/search", icon: <SearchIcon className="text-text-600 dark:text-text-300" size={16} /> },
-    {
-      label: "",
-      path: "/account/login",
-      icon: (
-        <div className="p-1 border-text-500 flex items-center justify-center border rounded-full">
-          <User2Icon className="text-text-600 dark:text-text-300" size={16} />
-        </div>
-      ),
-    },
   ],
 }));
 
@@ -41,6 +34,7 @@ const Navbar = () => {
   const { links } = useNavbarStore();
   const navbarRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
+  const { user, clearUser } = useStore();
 
   useLayoutEffect(() => {
     const cxt = gsap.context(() => {
@@ -74,7 +68,7 @@ const Navbar = () => {
   const renderLink = (link: NavLink) => {
     if (link.notLink) {
       return (
-        <div className="flex gap-1 duration-200 hover:animate-pulse items-center cursor-pointer">
+        <div className="flex gap-1 duration-200 items-center cursor-pointer">
           <span>{link.label}</span> {link.icon && link.icon}
         </div>
       );
@@ -85,6 +79,11 @@ const Navbar = () => {
         </Link>
       );
     }
+  };
+
+  const logout = () => {
+    signOut();
+    clearUser();
   };
 
   return (
@@ -100,12 +99,36 @@ const Navbar = () => {
               Ceelyrics
             </Link>
 
-            <ul className="items-center gap-4 sm:flex hidden select-none">
+            <ul className="items-center gap-4 sm:flex hidden">
               {links.map((link, idx) => (
                 <li key={idx} className="navLink">
                   {renderLink(link)}
                 </li>
               ))}
+              <li className="navLink">
+                <div>
+                  {user ? (
+                    <>
+                      <div className="flex items-center gap-4">
+                        <p className="text-primary-300 font-bold">Account</p>
+
+                        <button
+                          className="bg-primary-700 text-white px-4 py-2 rounded-full transition-colors duration-300 hover:bg-primary-600"
+                          onClick={logout}
+                        >
+                          Logout
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <Link href={"/account/login"}>
+                      <button className="bg-primary-700 text-white px-4 py-2 rounded-full transition-colors duration-300 hover:bg-primary-600">
+                        Login
+                      </button>
+                    </Link>
+                  )}
+                </div>
+              </li>
             </ul>
 
             <div className="flex items-center md:gap-6 gap-4 sm:hidden mr-4">

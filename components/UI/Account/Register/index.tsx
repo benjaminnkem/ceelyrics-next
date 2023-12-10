@@ -3,7 +3,6 @@
 import "remixicon/fonts/remixicon.css";
 import classNames from "classnames";
 import Link from "next/link";
-import RightToLeftIntro from "@/components/Common/Intros/right-to-left";
 import { useState } from "react";
 import { BASE_API_URL } from "@/lib/constants";
 import toast from "react-hot-toast";
@@ -29,7 +28,7 @@ const RegisterForm = () => {
 
   const {
     register,
-    // formState: { errors },
+    formState: { errors },
     handleSubmit,
     reset,
   } = useForm<Values>();
@@ -59,15 +58,14 @@ const RegisterForm = () => {
       {loading && <VortexLoader />}
 
       <div className="dark:bg-background-950 overflow-x-hidden overflow-y-auto">
-        <RightToLeftIntro />
         <div className="md:my-[1rem] md:min-w-[16rem] w-11/12 p-5 rounded-2xl mx-auto bg-white dark:bg-transparent shadow-lg dark:shadow-xl dark:shadow-black relative">
           <div>
-            <h1 className="font-bold md:text-3xl text-2xl mb-4">Create An Account</h1>
+            <h1 className="font-bold md:text-2xl text-xl mb-4">Create An Account</h1>
             <form onSubmit={handleSubmit(onSubmit)} noValidate>
               <div className="space-y-6">
                 <div className="grid md:grid-cols-2 md:gap-4 gap-6">
                   <div className="space-y-1">
-                    <label htmlFor="firstName" className="font-medium dark:text-text-100">
+                    <label htmlFor="lastName" className="font-medium dark:text-text-100">
                       First Name
                     </label>
                     <input
@@ -77,6 +75,9 @@ const RegisterForm = () => {
                       className={`${inputClass}`}
                       {...register("firstName", { required: { value: true, message: "First Name is required" } })}
                     />
+                    {errors.firstName && (
+                      <p className="text-sm font-semibold text-red-500">{errors.firstName.message}</p>
+                    )}
                   </div>
                   <div className="space-y-1">
                     <label htmlFor="lastName" className="font-medium dark:text-text-100">
@@ -89,6 +90,7 @@ const RegisterForm = () => {
                       className={`${inputClass}`}
                       {...register("lastName", { required: { value: true, message: "Last Name is required" } })}
                     />
+                    {errors.lastName && <p className="text-sm font-semibold text-red-500">{errors.lastName.message}</p>}
                   </div>
                 </div>
                 <div className="space-y-1">
@@ -111,6 +113,7 @@ const RegisterForm = () => {
                       },
                     })}
                   />
+                  {errors.email && <p className="text-sm font-semibold text-red-500">{errors.email.message}</p>}
                 </div>
                 <div className="space-y-1">
                   <label htmlFor="password" className="font-medium dark:text-text-100">
@@ -123,6 +126,7 @@ const RegisterForm = () => {
                     className={`${inputClass}`}
                     {...register("password", { required: { value: true, message: "A password is required." } })}
                   />
+                  {errors.password && <p className="text-sm font-semibold text-red-500">{errors.password.message}</p>}
                 </div>
 
                 <div>

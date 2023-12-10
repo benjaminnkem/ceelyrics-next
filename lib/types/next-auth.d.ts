@@ -10,8 +10,6 @@ declare module "next-auth" {
       bio?: string;
       image?: string;
       role?: "BASIC" | "ADMIN" | "SUPER_ADMIN";
-      createdAt: string;
-      updatedAt: string;
     };
     backendToken: {
       accessToken: string;
