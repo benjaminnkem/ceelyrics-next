@@ -5,7 +5,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import VortexLoader from "@/components/Common/Loaders/form-loader";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { signIn } from "next-auth/react";

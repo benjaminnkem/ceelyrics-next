@@ -59,11 +59,13 @@ const Navbar = () => {
     }
   }, [mobileNavOpen]);
 
-  const noshowRoutes = ["/account/register/", "/account/login/"];
+  if (pathname?.startsWith("/account")) return null;
 
-  for (const route of noshowRoutes) {
-    if (pathname === route) return null;
-  }
+  // const noshowRoutes = ["/account/register/", "/account/login/"];
+
+  // for (const route of noshowRoutes) {
+  //   if (pathname === route) return null;
+  // }
 
   const renderLink = (link: NavLink) => {
     if (link.notLink) {
@@ -110,7 +112,9 @@ const Navbar = () => {
                   {user ? (
                     <>
                       <div className="flex items-center gap-4">
-                        <p className="text-primary-300 font-bold">Account</p>
+                        <div className="text-primary-300 font-bold">
+                          <Link href={"/account/dashboard"}>Account</Link>
+                        </div>
 
                         <button
                           className="bg-primary-700 text-white px-4 py-2 rounded-full transition-colors duration-300 hover:bg-primary-600"

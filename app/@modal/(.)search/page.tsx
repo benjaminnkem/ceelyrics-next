@@ -6,10 +6,6 @@ import { gsap } from "gsap";
 import { useRouter } from "next/navigation";
 
 const SearchModal = () => {
-  useEffect(() => {
-    document.body.style.overflowY = "hidden";
-  }, []);
-
   const router = useRouter();
 
   useLayoutEffect(() => {

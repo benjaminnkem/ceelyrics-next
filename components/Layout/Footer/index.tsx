@@ -27,11 +27,13 @@ const Footer = () => {
   ];
 
   const pathname = usePathname();
-  const noshowRoutes = ["/account/register/", "/account/login/"];
+  if (pathname?.startsWith("/account")) return null;
 
-  for (const route of noshowRoutes) {
-    if (pathname === route) return null;
-  }
+  // const noshowRoutes = ["/account/register/", "/account/login/"];
+
+  // for (const route of noshowRoutes) {
+  //   if (pathname === route) return null;
+  // }
 
   return (
     <footer>
