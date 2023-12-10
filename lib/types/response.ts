@@ -41,4 +41,5 @@ export interface Lyrics {
   slug: string;
   artist: Artist;
   album: Album;
+  featuredArtists: Artist[];
 }
