@@ -29,16 +29,21 @@ const LoginForm = () => {
   const onSubmit: SubmitHandler<Values> = async (values) => {
     setLoading(true);
     try {
-      reset();
-      await signIn("credentials", { ...values, redirect: false });
+      const res = await signIn("credentials", { ...values, redirect: false });
+      if (!res?.ok) {
+        toast.error("Login failed.", { id: "error" });
+        setLoading(false);
+        return;
+      }
+
       toast.success("Logged in successfully", { id: "success" });
       router.replace("/");
-
       return;
     } catch {
       toast.error("Sorry, we couldn't sign you in", { id: "err" });
+      toast.error("Login failed.", { id: "error" });
     } finally {
-      setLoading(true);
+      setLoading(false);
     }
   };
 

@@ -5,9 +5,10 @@ import { openSans } from "@/lib/fonts";
 import { HomeIcon, MenuIcon, SearchIcon, User2Icon, XIcon } from "lucide-react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useStore } from "@/lib/store";
 import { signOut } from "next-auth/react";
+import toast from "react-hot-toast";
 
 interface NavLink {
   label: string;
@@ -32,9 +33,10 @@ export const useNavbarStore = create<NavStore>(() => ({
 
 const Navbar = () => {
   const { links } = useNavbarStore();
+  const { user, clearUser } = useStore();
   const navbarRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
-  const { user, clearUser } = useStore();
+  const router = useRouter();
 
   useLayoutEffect(() => {
     const cxt = gsap.context(() => {
@@ -59,7 +61,7 @@ const Navbar = () => {
     }
   }, [mobileNavOpen]);
 
-  if (pathname?.startsWith("/account")) return null;
+  if (pathname?.startsWith("/account") || pathname?.startsWith("/dashboard")) return null;
 
   // const noshowRoutes = ["/account/register/", "/account/login/"];
 
@@ -84,8 +86,11 @@ const Navbar = () => {
   };
 
   const logout = () => {
-    signOut();
     clearUser();
+    signOut({ redirect: false });
+    toast.success("Logged out successfully");
+    6;
+    router.replace("/");
   };
 
   return (
@@ -112,16 +117,17 @@ const Navbar = () => {
                   {user ? (
                     <>
                       <div className="flex items-center gap-4">
-                        <div className="text-primary-300 font-bold">
-                          <Link href={"/account/dashboard"}>Account</Link>
-                        </div>
+                        {/* <div className="text-primary-300 font-bold">
+                          <Link href={"/dashboard"}>Dashboard</Link>
+                        </div> */}
 
-                        <button
-                          className="bg-primary-700 text-white px-4 py-2 rounded-full transition-colors duration-300 hover:bg-primary-600"
-                          onClick={logout}
-                        >
-                          Logout
-                        </button>
+                        <div>
+                          <Link href={"/dashboard"}>
+                            <button className="bg-primary-700 text-white px-4 py-2 rounded-full transition-colors duration-300 hover:bg-primary-600">
+                              Dashboard
+                            </button>
+                          </Link>
+                        </div>
                       </div>
                     </>
                   ) : (

@@ -17,9 +17,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: {
-      absolute: `${firstName} ${firstName} Dashboard - Ceelyrics`,
+      absolute: `${firstName} ${lastName} Dashboard - Ceelyrics`,
     },
-    description: `This is your ceelyrics dashboard ${firstName} ${firstName}`,
+    description: `This is your ceelyrics dashboard ${firstName} ${lastName}`,
     robots: {
       index: false,
       nocache: true,

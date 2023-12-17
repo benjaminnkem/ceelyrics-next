@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import WidthClamp from "../Clamp";
 import { CoffeeIcon, TwitterIcon, YoutubeIcon } from "lucide-react";
 import { openSans } from "@/lib/fonts";
 import { useNavbarStore } from "../Navbar";
@@ -27,7 +26,7 @@ const Footer = () => {
   ];
 
   const pathname = usePathname();
-  if (pathname?.startsWith("/account")) return null;
+  if (pathname?.startsWith("/account") || pathname?.startsWith("/dashboard")) return null;
 
   // const noshowRoutes = ["/account/register/", "/account/login/"];
 
