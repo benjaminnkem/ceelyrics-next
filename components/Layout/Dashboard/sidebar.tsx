@@ -2,7 +2,7 @@
 
 import { useSidebar, useStore } from "@/lib/store";
 import classNames from "classnames";
-import { Bug, Heart, Home, LogOut, MessageCircle, Star, User2 } from "lucide-react";
+import { Bug, Heart, Home, LogOut, MessageCircle, Music, Search, Star, User, User2 } from "lucide-react";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -91,6 +91,31 @@ const Sidebar = () => {
               </div>
             ))}
           </div>
+
+          {user && (user.role === "ADMIN" || user.role === "SUPER_ADMIN") && (
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <p className="text-background-600 text-sm uppercase">Create</p>
+                <div className="flex-grow h-[.5px] bg-background-700"></div>
+              </div>
+              <div className={linksClass} onClick={() => router.push("/")}>
+                <Music size={20} />
+                <span>Lyric</span>
+              </div>
+              <div className={linksClass} onClick={() => router.push("/")}>
+                <Music size={20} />
+                <span>Album</span>
+              </div>
+              <div className={linksClass} onClick={() => router.push("/")}>
+                <User2 size={20} />
+                <span>Artist</span>
+              </div>
+              <div className={linksClass} onClick={() => router.push("/")}>
+                <Search size={20} />
+                <span>Search</span>
+              </div>
+            </div>
+          )}
 
           <div className="space-y-1">
             <div className="flex items-center gap-2">
