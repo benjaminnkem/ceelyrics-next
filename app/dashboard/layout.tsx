@@ -2,6 +2,7 @@ import { FC, PropsWithChildren } from "react";
 import { authOptions } from "@/lib/auth/auth-options";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import Sidebar from "@/components/Layout/Dashboard/Sidebar";
 
 const Layout: FC<PropsWithChildren> = async ({ children }) => {
   const session = await getServerSession(authOptions);
@@ -10,7 +11,15 @@ const Layout: FC<PropsWithChildren> = async ({ children }) => {
     redirect("/account/login");
   }
 
-  return <>{children}</>;
+  return (
+    <main>
+      <div className="min-h-screen">
+        <Sidebar />
+
+        {children}
+      </div>
+    </main>
+  );
 };
 
 export default Layout;

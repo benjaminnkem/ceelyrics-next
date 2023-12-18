@@ -1,8 +1,4 @@
 import RegisterForm from "@/components/UI/Account/Register";
-import { openSans } from "@/lib/fonts";
-import { HomeIcon } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
 
 const Register = () => {
   return (

@@ -1,69 +1,43 @@
 "use client";
-import { AreaChart, Card, Title } from "@tremor/react";
-import Sidebar from "@/components/Layout/Dashboard/sidebar";
-
-const chartdata = [
-  {
-    date: "Jan 22",
-    "Semi Analysis": 2890,
-    "The Pragmatic Engineer": 2338,
-  },
-  {
-    date: "Feb 22",
-    "Semi Analysis": 2756,
-    "The Pragmatic Engineer": 2103,
-  },
-  {
-    date: "Mar 22",
-    "Semi Analysis": 3322,
-    "The Pragmatic Engineer": 2194,
-  },
-  {
-    date: "Apr 22",
-    "Semi Analysis": 3470,
-    "The Pragmatic Engineer": 2108,
-  },
-  {
-    date: "May 22",
-    "Semi Analysis": 3475,
-    "The Pragmatic Engineer": 1812,
-  },
-  {
-    date: "Jun 22",
-    "Semi Analysis": 3129,
-    "The Pragmatic Engineer": 1726,
-  },
-];
-
-const valueFormatter = function (number: number) {
-  return "$ " + new Intl.NumberFormat("us").format(number).toString();
-};
+import Image from "next/image";
+import gStyles from "./Styles/dashboard-global.module.scss";
 
 const DashboardContent = () => {
   return (
     <>
-      <main>
-        <div className="min-h-screen">
-          <Sidebar />
-          <div className="h-full md:ml-[320px]">
-            <div className="max-w-5xl mx-auto">
-              <div className="p-10">
-                {/* <Card>
-          <Title>Newsletter revenue over time (USD)</Title>
-          <AreaChart
-            className="h-72 mt-4"
-            data={chartdata}
-            index="date"
-            categories={["Semi Analysis", "The Pragmatic Engineer"]}
-            colors={["indigo", "cyan"]}
-            valueFormatter={valueFormatter}
-          />
-        </Card> */}
+      <div className="h-full md:ml-[320px] px-6">
+        <div className="max-w-6xl mx-auto mt-2 select-none">
+          <div className="relative w-full min-h-[16rem] max-h-[20rem] bg-zinc-200 rounded-md">
+            <Image
+              draggable={false}
+              src={"/images/backgrounds/dashboard/user_bg2.jpg"}
+              alt="user cover img"
+              width={1920}
+              height={400}
+              className="object-cover absolute top-0 left-0 w-full h-full rounded-md"
+            />
+
+            <div className="absolute left-4 -bottom-6 flex items-center gap-4">
+              <div className="border-zinc-100 w-32 h-32 rounded-full border-4 overflow-hidden bg-zinc-200">
+                <Image
+                  draggable={false}
+                  src={"/images/backgrounds/dashboard/user.jpg"}
+                  alt="profile img"
+                  width={200}
+                  height={200}
+                  className="object-cover w-full h-full"
+                />
               </div>
+              <h1 className={`${gStyles.textShadow} text-2xl font-bold text-white`}>Benjamin Nkem</h1>
             </div>
           </div>
         </div>
-      </main>
+
+        <div className="mt-10 grid grid-cols-4 gap-6">
+          <div className="min-h-[14rem] border border-zinc-300 rounded-md bg-zinc-200 col-span-1"></div>
+          <div className="min-h-[14rem] border border-zinc-300 rounded-md bg-zinc-200 col-span-3"></div>
+        </div>
+      </div>
     </>
   );
 };

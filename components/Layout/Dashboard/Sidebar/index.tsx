@@ -77,7 +77,7 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="h-full fixed left-0 top-0 overflow-hidden md:w-[320px] bg-background-800 text-white">
+    <aside className="h-full fixed left-0 top-0 overflow-hidden md:w-[320px] w-0 duration-300 bg-background-800 text-white">
       <div className="py-4">
         <div>
           <div className="mx-auto w-24 h-24 rounded-full bg-background-400"></div>
