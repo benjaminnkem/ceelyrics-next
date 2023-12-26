@@ -10,8 +10,11 @@
   },
   "dependencies": {
     "@prisma/client": "^5.5.2",
+    "@react-three/drei": "^9.92.7",
+    "@react-three/fiber": "^8.15.12",
     "@studio-freight/lenis": "^1.0.27",
     "@tremor/react": "^3.11.1",
+    "@types/three": "^0.160.0",
     "axios": "^1.6.1",
     "child_process": "^1.0.2",
     "classnames": "^2.3.2",
@@ -30,6 +33,7 @@
     "react-loader-spinner": "^5.4.5",
     "remixicon": "^3.5.0",
     "sharp": "^0.32.6",
+    "three": "^0.160.0",
     "ytdl-core": "^4.11.5",
     "zustand": "^4.4.5"
   },
