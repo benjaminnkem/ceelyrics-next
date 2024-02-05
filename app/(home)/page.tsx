@@ -1,5 +1,5 @@
 import HomeContent from "@/components/UI/Home";
-import { musixApi } from "@/lib/configs/axiosInstance";
+// import { musixApi } from "@/lib/configs/axiosInstance";
 import { MM_API_KEY } from "@/lib/constants";
 import { InitialTrackResponse } from "@/lib/types/pages";
 
