@@ -1,7 +1,6 @@
-import { BASE_API_URL } from "@/lib/constants";
-import axios from "axios";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { publicApi } from "../configs/axiosInstance";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -15,12 +14,14 @@ export const authOptions: NextAuthOptions = {
         if (!credentials?.email || !credentials?.password) return null;
         const { email, password } = credentials;
 
-        const res = await axios.post(`${BASE_API_URL}/auth/login`, { email, password });
+        try {
+          const res = await publicApi.post(`/auth/login`, { email, password });
 
-        if (res.status === 401) return null;
-
-        const { data: user } = res;
-        return user;
+          return res.data;
+        } catch (e) {
+          console.log(e);
+          return null;
+        }
       },
     }),
   ],

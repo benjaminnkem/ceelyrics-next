@@ -5,7 +5,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import VortexLoader from "@/components/Common/Loaders/form-loader";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { signIn } from "next-auth/react";
@@ -23,25 +23,18 @@ const signUpBtnClass = classNames([
 const LoginForm = () => {
   const [loading, setLoading] = useState(false);
 
-  const { register, handleSubmit, reset } = useForm<Values>({ defaultValues: { email: "", password: "" } });
-  const router = useRouter();
+  const { register, handleSubmit } = useForm<Values>({ defaultValues: { email: "", password: "" } });
 
   const onSubmit: SubmitHandler<Values> = async (values) => {
     setLoading(true);
     try {
-      const res = await signIn("credentials", { ...values, redirect: false });
-      if (!res?.ok) {
-        toast.error("Login failed.", { id: "error" });
-        setLoading(false);
-        return;
-      }
+      await signIn("credentials", { ...values, redirect: false });
 
       toast.success("Logged in successfully", { id: "success" });
-      router.replace("/");
-      return;
-    } catch {
-      toast.error("Sorry, we couldn't sign you in", { id: "err" });
-      toast.error("Login failed.", { id: "error" });
+
+      redirect("/");
+    } catch (e) {
+      toast.error("Login failed.");
     } finally {
       setLoading(false);
     }
