@@ -3,7 +3,7 @@ import Image from "next/image";
 const Profile = () => {
   return (
     <>
-      <div className="h-full md:ml-[320px] px-6">
+      <div className="h-full md:ml-[260px] px-6">
         <div className="max-w-6xl mx-auto mt-2 select-none">
           <div className="relative w-full min-h-[16rem] max-h-[20rem] bg-zinc-200 rounded-md">
             <Image

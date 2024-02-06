@@ -2,20 +2,7 @@
 
 import { useSidebar, useStore } from "@/lib/store";
 import classNames from "classnames";
-import {
-  BarChart2,
-  Bug,
-  Heart,
-  Home,
-  LogOut,
-  MessageCircle,
-  Music,
-  PieChart,
-  Search,
-  Star,
-  User,
-  User2,
-} from "lucide-react";
+import { BarChart2, Bug, Heart, Home, LogOut, MessageCircle, Music, Search, Star, User2 } from "lucide-react";
 import { signOut } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -96,7 +83,7 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="h-full fixed left-0 top-0 overflow-hidden md:w-[320px] w-0 duration-300 bg-background-900 text-white">
+    <aside className="h-full fixed left-0 top-0 overflow-hidden md:w-[260px] w-0 duration-300 bg-background-900 text-white">
       <div className="py-4">
         <div>
           <div className="mx-auto w-24 h-24 rounded-full bg-background-400"></div>
@@ -108,8 +95,8 @@ const Sidebar = () => {
                 key={id}
                 className={`${linksClass} ${
                   pathname === link.path + "/"
-                    ? "bg-background-50 text-background-800"
-                    : "hover:bg-background-50 hover:text-background-800"
+                    ? "bg-background-800 font-semibold text-background-50"
+                    : "hover:bg-background-700 hover:text-background-50"
                 }`}
               >
                 {link.icon}
@@ -127,8 +114,8 @@ const Sidebar = () => {
               <div
                 className={`${linksClass} ${
                   pathname === "/lyrics/new/"
-                    ? "bg-background-50 text-background-800"
-                    : "hover:bg-background-50 hover:text-background-800"
+                    ? "bg-background-800 font-semibold text-background-50"
+                    : "hover:bg-background-700 hover:text-background-50"
                 } `}
                 onClick={() => router.push("/")}
               >
@@ -138,8 +125,8 @@ const Sidebar = () => {
               <div
                 className={`${linksClass} ${
                   pathname === "/albums/new"
-                    ? "bg-background-50 text-background-800"
-                    : "hover:bg-background-50 hover:text-background-800"
+                    ? "bg-background-800 font-semibold text-background-50"
+                    : "hover:bg-background-700 hover:text-background-50"
                 } `}
                 onClick={() => router.push("/")}
               >
@@ -149,8 +136,8 @@ const Sidebar = () => {
               <div
                 className={`${linksClass} ${
                   pathname === "/artists/new"
-                    ? "bg-background-50 text-background-800"
-                    : "hover:bg-background-50 hover:text-background-800"
+                    ? "bg-background-800 font-semibold text-background-50"
+                    : "hover:bg-background-700 hover:text-background-50"
                 } `}
                 onClick={() => router.push("/")}
               >
@@ -160,8 +147,8 @@ const Sidebar = () => {
               <div
                 className={`${linksClass} ${
                   pathname === "/search"
-                    ? "bg-background-50 text-background-800"
-                    : "hover:bg-background-50 hover:text-background-800"
+                    ? "bg-background-800 font-semibold text-background-50"
+                    : "hover:bg-background-700 hover:text-background-50"
                 } `}
                 onClick={() => router.push("/")}
               >
@@ -176,13 +163,15 @@ const Sidebar = () => {
               <p className="text-background-600 text-sm uppercase">Actions</p>
               <div className="flex-grow h-[.5px] bg-background-700"></div>
             </div>
-            <div className={linksClass} onClick={() => router.push("/")}>
-              <Home size={20} />
-              <span>Home</span>
-            </div>
-            <div className={linksClass} onClick={logout}>
-              <LogOut size={20} />
-              <span>Logout</span>
+            <div className="grid grid-cols-2">
+              <div className={linksClass} onClick={() => router.push("/")}>
+                <Home size={16} />
+                <span>Home</span>
+              </div>
+              <div className={linksClass + " text-red-500"} onClick={logout}>
+                <LogOut size={16} />
+                <span>Logout</span>
+              </div>
             </div>
           </div>
         </div>
