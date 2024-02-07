@@ -1,4 +1,4 @@
-import ArtistGrid from "@/components/UI/Artists/artist-names";
+import ArtistGrid from "@/components/UI/Artists/artist-display";
 import ArtistsHeader from "@/components/UI/Artists/header";
 import { BASE_API_URL } from "@/lib/constants";
 import { Artist } from "@/lib/types/response";
