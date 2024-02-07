@@ -1,3 +1,7 @@
-# Ceelyrics (Next) by Nkem Benjamin
+# Ceelyrics Improved
 
 ## Getting Started
+
+## Installation
+
+## Contribution

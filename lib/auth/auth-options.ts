@@ -19,7 +19,6 @@ export const authOptions: NextAuthOptions = {
 
           return res.data;
         } catch (e) {
-          console.log(e);
           return null;
         }
       },
