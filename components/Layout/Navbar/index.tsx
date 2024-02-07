@@ -61,7 +61,7 @@ const Navbar = () => {
     }
   }, [mobileNavOpen]);
 
-  if (pathname?.startsWith("/account") || pathname?.startsWith("/dashboard")) return null;
+  if (pathname?.startsWith("/account")) return null;
 
   // const noshowRoutes = ["/account/register/", "/account/login/"];
 
@@ -131,7 +131,7 @@ const Navbar = () => {
                       </div>
                     </>
                   ) : (
-                    <Link href={"/account/login"}>
+                    <Link href={"/account/login"} target="_blank">
                       <button className="bg-primary-700 text-white px-4 py-2 rounded-full transition-colors duration-300 hover:bg-primary-600">
                         Login
                       </button>

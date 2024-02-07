@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { satoshi } from "@/lib/fonts";
 import Providers from "@/lib/utils/providers";
-import Navbar from "@/components/Layout/Navbar";
-import Footer from "@/components/Layout/Footer";
 import { ReactNode } from "react";
 import "../public/globals.css";
 
@@ -27,10 +25,8 @@ const RootLayout: React.FC<RootLayoutProps> = (props) => {
     <html lang="en">
       <body className={`${satoshi.className} dark:bg-background-950 dark:text-[#f6f6f6]`}>
         <Providers>
-          <Navbar />
           {props.modal}
           {props.children}
-          <Footer />
         </Providers>
       </body>
     </html>

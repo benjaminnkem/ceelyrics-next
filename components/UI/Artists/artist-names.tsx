@@ -1,33 +1,20 @@
 "use client";
 
-import { ArtistResponse } from "@/app/artists/page";
-import { letters } from "@/lib/mock";
-import { useLayoutEffect, useRef, useState } from "react";
+import { ArtistResponse } from "@/app/(public_pages)/artists/page";
+import { useRef } from "react";
 import { gsap } from "gsap";
-import classNames from "classnames";
-import Link from "next/link";
+import { useGSAP } from "@gsap/react";
+import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 
-const ArtistGrid: React.FC<{ artistsResult: ArtistResponse[] | undefined }> = ({ artistsResult }) => {
+const ArtistGrid: React.FC<{ artistsResult: ArtistResponse[] | undefined }> = ({}) => {
   const artistsRef = useRef<HTMLDivElement>(null);
-  const [selectedLetter, setSelectedLetter] = useState<string>("a");
-  const [artists, setArtists] = useState(artistsResult?.filter((artist) => artist.stageName[0].toLowerCase() === "a"));
 
-  useLayoutEffect(() => {
-    const cxt = gsap.context(() => {
+  useGSAP(() => {
+    gsap.context(() => {
       gsap.to(".artist_letter", { opacity: 1, yPercent: 40, ease: "power1.out", stagger: { amount: 0.5 } });
     }, artistsRef);
-    return () => cxt.revert();
-  }, []);
-
-  const filterArtists = (letter: string) => {
-    setSelectedLetter(letter);
-
-    const filteredArtists = artistsResult?.filter(
-      (artist) => artist.stageName[0].toLowerCase() === letter.toLocaleLowerCase()
-    );
-    setArtists(filteredArtists);
-    transitionNames();
-  };
+  });
 
   const transitionNames = () => {
     gsap.context(() => {
@@ -41,45 +28,54 @@ const ArtistGrid: React.FC<{ artistsResult: ArtistResponse[] | undefined }> = ({
   };
 
   return (
-    <div className="container my-16" ref={artistsRef}>
-      <div className="grid lg:grid-cols-12 md:grid-cols-8 grid-cols-5 md:gap-4 gap-2">
-        {letters.map((letter, id) => {
-          const letterClass = classNames([
-            "rounded-full border-4 artist_letter opacity-0 md:text-xl md:font-semibold cursor-pointer",
-            "duration-200 flex items-center justify-center py-2 bg-white dark:bg-background-900 font-medium",
-            { "border-primary-300 shadow-2xl": selectedLetter === letter },
-            { "border-transparent hover:shadow-2xl shadow": selectedLetter !== letter },
-          ]);
-          return (
-            <div key={id} className={letterClass} onClick={() => filterArtists(letter)}>
-              <span className="capitalize">{letter}</span>
-            </div>
-          );
-        })}
-      </div>
-
-      <div className="mt-16 space-y-4">
-        <h2 className="text-4xl font-extrabold">
-          <span className="capitalize text-primary-400">
-            {selectedLetter}{" "}
-            <span className="text-sm text-black dark:text-text-500 font-normal">({artists?.length})</span>
-          </span>
-        </h2>
-        {selectedLetter && (
-          <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-4">
-            {artists?.map((artist) => (
-              <div key={artist.id} className="__artist_letter_">
-                <Link href={`/artists/${artist.slug}`}>
-                  <div className="rounded-xl font-semibold cursor-pointer duration-300 hover:shadow-2xl flex items-center justify-center shadow py-4 bg-white dark:bg-background-900">
-                    <span>{artist.stageName}</span>
-                  </div>
-                </Link>
-              </div>
+    <>
+      <div className="grid grid-cols-8 gap-4 container">
+        <div className="col-span-2 min-h-10">
+          <p className="text-center uppercase font-extrabold text-lg text-primary-600">Suggestions</p>
+          <div className="md:flex items-center space-y-3 md:space-y-0 text-center md:text-start flex-wrap gap-4 md:mt-4 mt-2">
+            {Array.from({ length: 20 }).map((_, id) => (
+              <p key={id} className="font-semibold hover:text-zinc-900 text-zinc-500 duration-200 cursor-pointer">
+                Artist Name
+              </p>
             ))}
           </div>
-        )}
+        </div>
+        <div className="col-span-6 min-h-10 grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4">
+          {Array.from({ length: 10 }).map((_, id) => (
+            <div key={id} className="border border-zinc-400 rounded-lg relative max-h-[12rem] overflow-hidden">
+              <Image
+                src={
+                  id % 2 === 0
+                    ? "/images/artists/burna.jpg"
+                    : id % 3 === 0
+                    ? "/images/artists/wizkid.png"
+                    : "/images/artists/davido.jpg"
+                }
+                alt=""
+                width={400}
+                height={400}
+                className="object-cover w-full h-full"
+              />
+
+              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black"></div>
+              <div className="absolute overflow-hidden top-0 text-white flex cursor-pointer group items-end justify-center py-4 left-0 w-full h-full">
+                <p className="font-extrabold text-lg">Burna Boy</p>
+                <ArrowUpRight className="opacity-0 scale-0 -translate-x-4 group-hover:translate-x-0 group-hover:opacity-100 group-hover:scale-100 duration-300" />
+              </div>
+            </div>
+          ))}
+        </div>
+        <div></div>
+        <div></div>
+        <div className="mb-10">
+          <button className="text-primary font-bold text-purple-500 border-b pb-1 border-primary-500">
+            See more...
+          </button>
+        </div>
       </div>
-    </div>
+
+      <div className="flex items-center justify-center"></div>
+    </>
   );
 };
 
