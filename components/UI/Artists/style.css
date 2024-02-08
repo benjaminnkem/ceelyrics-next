@@ -1,0 +1,35 @@
+.timeline::after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 100%;
+  background: #5a0f5d81;
+  top: 0;
+  left: 50%;
+  margin-left: -2px;
+  z-index: -1;
+}
+
+/* for bullets */
+.bullet-edu {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  right: -23px;
+  z-index: 10;
+  top: 101px;
+  background: linear-gradient(red, blue);
+}
+
+/* right bullet */
+.right-con .bullet-edu {
+  left: -23px;
+}
+
+/* managing responsiveness */
+@media screen and (max-width: 640px) {
+  .timeline::after {
+    display: none;
+  }
+}

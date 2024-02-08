@@ -16,7 +16,7 @@ const ArtistsHeader = () => {
             </div>
 
             <div className="overflow-hidden">
-              <div className="w-full jumbo-search max-w-3xl mx-auto rounded-lg border outline-none px-3 border-white/[5] bg-black/5 flex items-center gap-4">
+              <div className="w-full jumbo-search max-w-3xl mx-auto rounded-lg border outline-none px-3 border-white/[5] dark:border-zinc-500 bg-black/5 dark:bg-background-900 flex items-center gap-4">
                 <input
                   type="text"
                   className="bg-transparent text-center w-full py-3 outline-none"
