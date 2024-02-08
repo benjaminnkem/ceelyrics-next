@@ -24,9 +24,9 @@ interface NavStore {
 export const useNavbarStore = create<NavStore>(() => ({
   links: [
     { label: "Home", path: "/" },
+    { label: "Find", path: "/artists" },
     { label: "About", path: "/about" },
     { label: "Contact Us", path: "/contact" },
-    { label: "Artists", path: "/artists" },
     { label: "", path: "/search", icon: <SearchIcon className="text-text-600 dark:text-text-300" size={16} /> },
   ],
 }));
