@@ -75,7 +75,7 @@ const ArtistGrid: React.FC<{ artistsResult: ArtistResponse[] | undefined }> = ({
       <div></div>
       <div></div>
       <div className="mb-10">
-        <button className="text-primary font-bold text-purple-500 border-b pb-1 border-primary-500">See more...</button>
+        <button className="text-primary font-bold text-purple-500 border-b pb-1 border-primary-500">See more..</button>
       </div>
     </div>
   );
