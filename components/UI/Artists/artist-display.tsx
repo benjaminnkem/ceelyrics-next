@@ -13,13 +13,13 @@ const ArtistGrid: React.FC<{ artistsResult: ArtistResponse[] | undefined }> = ({
 
   useGSAP(() => {
     gsap.context(() => {
-      gsap.to(".artist_letter1", { opacity: 1, yPercent: 40, ease: "power1.out", stagger: { amount: 0.5 } });
+      gsap.to(".artist_letter", { opacity: 1, yPercent: 40, ease: "power1.out", stagger: { amount: 0.5 } });
     }, artistsRef);
   });
 
   const transitionNames = () => {
     gsap.context(() => {
-      gsap.from(".__artist_letter1_", {
+      gsap.from(".__artist_letter_", {
         opacity: 0,
         yPercent: 10,
         ease: "power4",
